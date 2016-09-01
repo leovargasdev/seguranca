@@ -1,0 +1,4119 @@
+<!-- html-header type=current begin -->
+	
+	<!DOCTYPE html>
+	
+	
+	<html lang="en">
+	<head>
+	<!-- Render IE9 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	
+
+
+	<script id="before-content" type="text/javascript">
+(function () {
+    if (typeof window.sdmedia !== 'object') {
+         window.sdmedia = {};
+    }
+    if (typeof window.sdmedia.site !== 'object') {
+        window.sdmedia.site = {};
+    }
+
+    var site = window.sdmedia.site;
+    site.rootdir = "//slashdot.org";
+}());
+
+var pageload = {
+	pagemark: '835095488373586304',
+	before_content: (new Date).getTime()
+};
+function pageload_done( $, console, maybe ){
+	pageload.after_readycode	= (new Date).getTime();
+	pageload.content_ready_time	= pageload.content_ready - pageload.before_content;
+	pageload.script_ready_time	= pageload.after_readycode - pageload.content_ready;
+	pageload.ready_time		= pageload.after_readycode - pageload.before_content;
+	// Only report 1% of cases.
+	maybe || (Math.random()>0.01) || $.ajax({ data: {
+		op: 'page_profile',
+		pagemark: pageload.pagemark,
+		dom: pageload.content_ready_time,
+		js: pageload.script_ready_time
+	} });
+}
+</script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	
+		<title>Slashdot: News for nerds, stuff that matters</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+		<meta name="description" content="Slashdot: News for nerds, stuff that matters. Timely news source for technology related news with a heavy slant towards Linux and Open Source issues.">
+		<meta itemprop="name" content="Slashdot: News for nerds, stuff that matters">
+		<meta itemprop="description" content="Slashdot: News for nerds, stuff that matters. Timely news source for technology related news with a heavy slant towards Linux and Open Source issues.">
+	
+	
+		<meta property="fb:admins" content="100000696822412">
+		<meta property="fb:page_id" content="267995220856">
+	
+		<meta name="viewport" content="width=1000, user-scalable=yes, minimum-scale=0, maximum-scale=10.0" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+	
+		<link rel="canonical" href="https://slashdot.org">
+		
+		<link rel="alternate" media="only screen and (max-width: 640px)" href="http://m.slashdot.org" >
+	
+
+		<link rel="stylesheet" type="text/css" media="screen, projection" href="//a.fsdn.com/sd/classic.ssl.css?release_20160830" >
+		<!--[if IE 8]><link rel="stylesheet" type="text/css" media="screen, projection" href="//a.fsdn.com/sd/ie8-classic.ssl.css?release_20160830" ><![endif]-->
+		<!--[if IE 7]><link rel="stylesheet" type="text/css" media="screen, projection" href="//a.fsdn.com/sd/ie7-classic.ssl.css?release_20160830" ><![endif]-->
+	
+	
+	
+
+
+
+	
+	<!--  -->
+
+	
+	
+
+	
+	<!-- SMACKS: NEW CSS -->
+	<link rel="stylesheet" href="//a.fsdn.com/sd/css/app.css?release_20160830">
+
+	<script type='text/javascript'>
+var _gaq = _gaq || [];
+</script>
+
+
+
+   
+   
+
+<script type="text/javascript" src="https://d3tglifpd8whs6.cloudfront.net/js/prebid/slash-homepage/slash-homepage.min.js"></script>
+<script type='text/javascript'>
+    /*global performance */
+    var googletag = window.googletag || {};
+    googletag.cmd = googletag.cmd || [];
+</script>
+
+<!-- prep GPT ads -->
+<script type='text/javascript'>
+(function() {
+	function page_type (loc) {
+		/*
+		only four page types:
+		- Story
+		- Poll
+		- Homepage (/ only)
+		- Other (but AdOps wants 'Homepage' again)
+		*/
+		var path = loc.pathname;
+		var just_the_root = /^\/?$/.test(path);
+		var story_or_poll = /^\/(story|submission|poll)\//i.exec(path);
+
+		var page_type = just_the_root ? 'homepage'
+		              : story_or_poll ? story_or_poll[1]
+		              :                 'other'
+
+		// exceptions
+		page_type = page_type.toLowerCase() === 'submission'
+		          ? 'story'  // submissions are like stories, right?
+		          : page_type
+		page_type = page_type.toLowerCase() === 'other'
+		          ? 'homepage'  // this one might move out of here
+		          : page_type;
+
+		return page_type;
+	}
+	function page_section (loc) {
+		var greek = ['alpha', 'beta', 'gamma', 'delta'].join('|');
+		var hostwise = '^([a-z]+)(?:-(?:'+greek+'))?\\.(?:slashdot\\.org|[a-z]+-[0-9]+\\.sb\\.sf\\.net)$';
+		var pathwise = '^/(?:(recent|popular|blog)|stories/([^/]+))';
+		var rootwise = '^\/?$';
+
+		var hostwisely = new RegExp(hostwise,'i').exec(loc.hostname);
+		var pathwisely = new RegExp(pathwise,'i').exec(loc.pathname);
+		var rootwisely = new RegExp(rootwise,'i').exec(loc.pathname);
+
+		var section = (rootwisely && 'homepage')
+		           || (pathwisely && (pathwisely[1] || pathwisely[2]))
+		           || ''
+		            ;
+
+                section.replace(/[^_a-z]/ig, '');
+
+		return section;
+	}
+	function single_size (size) {
+		return '' + size[0] + 'x' + size[1];
+	}
+	function sz_sz (sz) {
+		var str = '';
+		var sizes = [];
+		if (sz[0] instanceof Array) {
+			for (size in sz) {
+				sizes.push(single_size(sz[size]));
+			}
+			return sizes.join(',');
+		} else {
+			return single_size(sz);
+		}
+	}
+
+	function merge_tpc_array_to_str(array1,array2) {
+		var tpc_final = array1.concat(array2);
+		var uniq = tpc_final.reduce(function(a,b){
+		if (a.indexOf(b) < 0 ) a.push(b);
+			return a;
+		},[]);
+
+		var tpc_str = uniq.join(',');
+		tpc_str = tpc_str.replace(/[^_a-z,]/ig, '');
+		tpc_str = tpc_str.replace(/^,/ig, '');
+		return tpc_str;
+	}
+
+	/* LEGEND:
+		- 'sz' = "size"
+		- 'npt' = "no page type" in ad unit name
+	*/
+	var tags = {
+        '728x90_A': { 'sz': [[728, 90], [970, 90], [970, 250], [980, 66]] },
+        '728x90_B': { 'sz': [728, 90] },
+        '728x90_C': { 'sz': [728, 90] },
+        'HubIcon_200x90_A': { 'sz': [[200, 90], [220, 90]]},
+        'PowerSwitch_980x66_A': { 'sz': [980, 66] },
+        'PollPeel': { 'sz': [200, 90] },
+        'VideoWidget_300x250': { 'sz': [300, 250], 'npt': 1 },
+        '300x250_A': { 'sz': [[300, 250], [300, 600], [300, 1050]] },
+        '300x250_B': { 'sz': [[300, 250], [300, 600]] },
+        '300x250_C': { 'sz': [[300, 250], [300, 600]] },
+        '300x250_D': { 'sz': [[300, 250], [300, 600]] },
+        'Pulse_300x600_A': { 'sz': [300, 600] },
+        //'Polls_Detail_300x250_A': { 'sz': [[300, 250], [300, 600]], 'npt': 1 },
+        // To replace above line that was remove by Brandon in an attempt to resolve ad unit issue
+        'Poll_300x250_A': { 'sz': [[300, 250], [300, 600]], 'npt': 1 },
+        '1x1': { 'sz': [1, 1] }
+		//,					 'SD_Story_1x1': { 'sz': [1, 1] }
+	};
+
+	var network_path = '/41014381/Slashdot/';
+	var tag_name_prefix = 'SD';
+	var tag_name_linkage = '_';
+	var tag_name_pagetype = page_type(location);
+	var tag_topic = page_section(location);
+    if(tag_name_pagetype == 'poll'){
+        tag_name_pagetype = 'Poll';
+    }
+	var before_tag_pagetyped    = network_path
+	                            + tag_name_prefix
+	                            + tag_name_linkage
+	                            + tag_name_pagetype
+	                            + tag_name_linkage
+	                            ;
+	var before_tag_pagetypeless = network_path
+	                            + tag_name_prefix
+	                            + tag_name_linkage
+	                         /* + tag_name_pagetype */
+	                         /* + tag_name_linkage */
+	                            ;
+
+
+	googletag.cmd.push(function() {
+		function define_me_a_slot (tag) {
+			var sandbox_regex = /[a-z]+-[0-9]+\.sb\.sf\.net$/i;
+			var full_name = tags[tag].npt  // "no page type"
+			              ? before_tag_pagetypeless + tag
+			              : before_tag_pagetyped    + tag
+			              ;
+			var div_id = 'div-gpt-ad-' + tag.toLowerCase();
+
+			var service;
+            // extend jQuery and get URL query params
+            jQuery.extend({
+              getQueryParameters : function(str) {
+            	  return (str || document.location.search).replace(/(^\?)/,'').split("&").map(function(n){
+                  return n = n.split("="),this[n[0]] = n[1],this
+                  }.bind({}))[0];
+              }
+            });
+
+            var queryParams = $.getQueryParameters();
+
+            if( queryParams.source === 'autorefresh' ) {
+                full_name = full_name.replace(/(\d+x\d+)/,'$1_Ref');
+                //console.log('TAG NAME: ', full_name);
+            }
+
+			service = googletag.defineSlot(
+				  full_name
+				, tags[tag].sz
+				, div_id
+			).addService(googletag.pubads());
+
+			service.setTargeting('sz', tags[tag].sz);
+
+			
+			var frontend_tpc = tag_topic.split(",");
+			var backend_tpc = [  ];
+
+			var tpc_final = merge_tpc_array_to_str(frontend_tpc,backend_tpc);
+
+			service.setTargeting('tpc', tpc_final);
+			if (location.hostname.match(sandbox_regex)) {
+				service.setTargeting('test', 'adops');
+			}
+
+		}
+
+		for (tag in tags) {
+			define_me_a_slot(tag, false);
+		}
+
+                googletag.pubads().setTargeting('requestSource', 'GPT');
+		googletag.pubads().enableAsyncRendering();
+		
+
+		googletag.pubads().collapseEmptyDivs();
+        bizxPrebid.Ads.pushToGoogle();
+		googletag.enableServices();
+	});
+})();
+</script>
+
+
+
+<!-- CrossPixel -->
+<script type="text/javascript"> try{(function(){ var cb = new Date().getTime(); var s = document.createElement("script"); s.defer = true; s.src = "//tag.crsspxl.com/s1.js?d=2397&cb="+cb; var s0 = document.getElementsByTagName('script')[0]; s0.parentNode.insertBefore(s, s0); })();}catch(e){} </script>
+
+<!-- Magnetic -->
+<script type="text/javascript">
+  // FHItem-toptags: 
+  
+  var backend_tpc = [[  ]] || ['information technology','tech'];
+  var mag_keywords = backend_tpc.join(",");
+  mag_keywords = ( mag_keywords.length > 0 ? mag_keywords : 'information technology,tech' );
+  //console.log("mag.keywords: " + mag_keywords );
+  /* Version: 0.7 */
+  /* <![CDATA[ */
+  try {
+  var _mag = _mag || {};
+  _mag.kw = mag_keywords;
+  _mag.kw_encoded = 0;
+  _mag.shortName = 'sourceforgemedia-computing';
+  _mag.default_protocol = ('https:' == document.location.protocol ? 'https:' : 'http:');
+  _mag.startTime = (new Date()).getTime();
+  (function(d,t) {
+  var mag = d.createElement('script'); mag.type = 'text/javascript'; mag.async = true; mag.src = t;
+  var head = d.getElementsByTagName('head')[0] || d.documentElement; head.insertBefore(mag, head.firstChild);
+  })(document,  _mag.default_protocol + '//d3ezl4ajpp2zy8.cloudfront.net/sourceforgemedia-computing_tag.js');
+  } catch (e) {}
+  /* ]]> */
+</script>
+
+<!-- AdBlock Check -->
+<script>
+var isAdBlockActive = true;
+</script>
+<script async src="//a.fsdn.com/sd/js/scripts/ad.js?release_20160830"></script>
+
+<!-- Nativo ads -->
+
+  <script async type="text/javascript" src="//s.ntv.io/serve/load.js"></script>
+
+</head>
+<body class="anon index2 ">
+
+	
+	<script src="//a.fsdn.com/sd/all-minified.js?release_20160830" type="text/javascript"></script>
+	
+	
+	<script type="text/javascript">
+(function(){
+var regexp=/\s*(?:\d+|many)\s+more\s*/i;
+
+	
+	var auto_more_count = 1;
+
+	function auto_more(){
+		var $more_link = $('#more-experiment a');
+		$more_link.each(function(){
+			var $lastitem = $('#firehoselist>article.fhitem:visible:last');
+			if ( Bounds.intersect(window, $lastitem) ) {
+			
+			
+				!--auto_more_count && (auto_more=undefined);
+				// don't allow a call till the next paginate gets built and |more_possible|
+				$(document).unbind('scroll', call_auto_more);
+			}
+		});
+	};
+
+	function call_auto_more(){ auto_more && auto_more(); }
+	
+
+$('#more-experiment a').
+	live('more-possible', function( event ){
+		var $more_link=$(this);
+		if ( regexp.test($more_link.text()) ) {
+		
+			$(document).bind('scroll', call_auto_more);
+		} else {
+			$(document).unbind('scroll', call_auto_more);
+		
+		}
+	});
+})();
+</script>
+	<!--[if lt IE 9]><script src="//a.fsdn.com/sd/html5.js"></script><![endif]-->
+	
+	
+	<script type="text/javascript">
+		(function() {
+			if (typeof window.janrain !== 'object') window.janrain = {};
+			if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
+
+			/* _______________ can edit below this line _______________ */
+
+			janrain.settings.tokenUrl = 'https://slashdot.org/token_callback.pl';
+			janrain.settings.type = 'embed';
+			janrain.settings.appId = 'ggidemlconlmjciiohla';
+			janrain.settings.appUrl = 'https://login.slashdot.org';
+			janrain.settings.providers = [
+			'googleplus',
+			'facebook',
+			'twitter',
+			'linkedin'];
+			janrain.settings.providersPerPage = '5';
+			janrain.settings.format = 'one column';
+			janrain.settings.actionText = 'Sign in with';
+			janrain.settings.showAttribution = false;
+			janrain.settings.fontColor = '#666666';
+			janrain.settings.fontFamily = 'lucida grande, Helvetica, Verdana, sans-serif';
+			janrain.settings.backgroundColor = '#ffffff';
+			janrain.settings.width = '300';
+			janrain.settings.borderColor = '#cccccc';
+			janrain.settings.borderRadius = '5';    janrain.settings.buttonBorderColor = '#CCCCCC';
+			janrain.settings.buttonBorderRadius = '0';
+			janrain.settings.buttonBackgroundStyle = 'gray';
+			janrain.settings.language = '';
+			janrain.settings.linkClass = 'janrainEngage';
+
+			/* _______________ can edit above this line _______________ */
+
+			function isReady() { janrain.ready = true; };
+			if (document.addEventListener) {
+			  document.addEventListener("DOMContentLoaded", isReady, false);
+			} else {
+			  window.attachEvent('onload', isReady);
+			}
+
+			var e = document.createElement('script');
+			e.type = 'text/javascript';
+			e.id = 'janrainAuthWidget';
+
+			e.src = 'https://rpxnow.com/js/lib/login.slashdot.org/engage.js';
+
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(e, s);
+		})();
+	</script>
+	
+		<script src="//cdn-social.janrain.com/social/janrain-social.min.js"></script>
+		<script type="text/javascript">
+			(function($) {
+				$(function(){
+					janrain.settings.appUrl = "https://login.slashdot.org";
+					$twitter = $('body .janrain_twitterButton');
+					$twitter.append('<i class="icon-twitter"></i>');
+
+					janrain.settings.social = {
+						providers: [
+							"facebook",
+							"twitter",
+							"linkedin",
+							"native-googleplus",
+							"native-reddit"
+						],
+						shareCountMin: "100",
+						shareCountMode: "combined"
+					};
+				});
+			})($j);
+		</script>
+	<!-- index2_variant |A|-->
+	
+	<!-- TABOOLA -->
+	<script type="text/javascript">
+	  window._taboola = window._taboola || [];
+	  _taboola.push({home:'auto'});
+	  !function (e, f, u) {
+		e.async = 1;
+		e.src = u;
+		f.parentNode.insertBefore(e, f);
+	  }(document.createElement('script'),
+	  document.getElementsByTagName('script')[0],
+	  '//cdn.taboola.com/libtrc/slashdot/loader.js');
+	</script>
+	
+	<!-- html-header type=current end --><!-- header type=current begin -->
+	
+	
+	
+	<link rel="top"       title="News for nerds, stuff that matters" href="//slashdot.org/" >
+<link rel="search"    title="Search Slashdot" href="//slashdot.org/search.pl">
+<link rel="alternate" title="Slashdot RSS" href="http://rss.slashdot.org/Slashdot/slashdotMain" type="application/rss+xml">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+	
+		<div id="top_parent"></div>
+		<a name="topothepage"></a>
+		
+		<div class="container">
+			<div class="nav-wrap">
+				<nav class="nav-primary" role="navigation" aria-label="Global Navigation">
+					<h1 class="logo">
+	<a href="//slashdot.org"><span>Slashdot</span></a>
+</h1>
+
+<ul class="nav-site">
+	<li><a href="//slashdot.org"><i class="icon-book" title="Stories"></i><span>Stories</span></a></li>
+	<li>
+		<ul class="filter-firehose">
+			<li class="nav-label">Firehose <i class="icon-angle-right"></i></li>
+			<li><a href="//slashdot.org/recent">All</a></li>
+			<li><a href="//slashdot.org/popular">Popular</a></li>
+		</ul>
+	</li>
+	<li><a href="//slashdot.org/polls"><i class="icon-chart-bar" title="Polls"></i><span>Polls</span></a></li>
+
+	<!--
+	<li><a href="//ask.slashdot.org"><i class="icon-question-circle"></i><span>Ask</span></a></li>
+	
+	<li><a href="//events.slashdot.org"><i class="icon-calendar"></i><span>Events</span></a></li>
+	-->
+	<li><a href="http://deals.slashdot.org/?utm_source=slashdot&amp;utm_medium=navbar&amp;utm_campaign=dealshp_1" target="_blank"><i class="sd-mini" title="Deals"></i> <span>Deals</span></a></li>
+</ul>
+<a href="//slashdot.org/submission" class="btn btn-success">Submit</a>
+				</nav>
+				<nav class="nav-user" role="navigation" aria-label="user access and account controls">
+					<form id="search" class="form-inline nav-search-form" method="get" action="//slashdot.org/index2.pl">
+<!-- //slashdot.org/index2.pl" -->
+	<div class="form-group">
+		<label class="sr-only" for="sitesearch">Search Slashdot</label>
+		<div class="input-group">
+			<input type="text" id="" class="" name="fhfilter" value="" placeholder="Search">
+		</div>
+	</div>
+	<button type="submit" class="btn icon-search"></button>
+</form>
+<ul class="user-access">
+	
+		
+			<li >
+				<a href="//slashdot.org/my/login"  onclick="show_login_box(); return false;"><i class="icon-login"></i><span> Login</span></a>
+				
+			</li>
+		
+	
+		
+			<li class="nav-label">or</li>
+		
+	
+		
+			<li >
+				<a href="//slashdot.org/my/newuser"  onclick="getModalPrefs('newUserModal', 'Create Account', 1); $('#modal_box').addClass('join'); return false;"><i class="icon-user-add"></i><span> Sign up</span></a>
+				
+			</li>
+		
+	
+</ul>
+				</nav>
+			</div>
+			<div class="nav-secondary-wrap">
+				<nav class="nav-secondary" role="secondary-navigation">
+	<ul>
+		<li class="nav-label">Topics: </li>
+		<li><a href="//devices.slashdot.org">Devices</a></li>
+		<li><a href="//build.slashdot.org">Build</a></li>
+		<li><a href="//entertainment.slashdot.org">Entertainment</a></li>
+		<li><a href="//technology.slashdot.org">Technology</a></li>
+		<li><a href="//slashdot.org/?fhfilter=opensource">Open Source</a></li>
+		<li><a href="//science.slashdot.org">Science</a></li>
+		<li><a href="//yro.slashdot.org">YRO</a></li>
+		<!-- <li><a href="//slashdot.org/topics.pl">more...</a></li> -->
+	</ul>
+</nav>
+<nav class="nav-social" role="social navigation">
+	<ul>
+		<li class="nav-label">Follow us:</li>
+		<li><a href="http://rss.slashdot.org/Slashdot/slashdotMain" target="_blank"><i class="icon-rss-squared"></i><span class="sr-only">RSS</span></a></li>
+		<li><a href="http://www.facebook.com/slashdot" target="_blank"><i class="icon-facebook-squared"></i><span class="sr-only">Facebook</span></a></li>
+		<li><a href="https://plus.google.com/112601993642376762846/" target="_blank"><i class="icon-gplus-squared"></i><span class="sr-only">Google+</span></a></li>
+		<li><a href="http://twitter.com/slashdot" target="_blank"><i class="icon-twitter-squared"></i><span class="sr-only">Twitter</span></a></li>
+		<li><a href="//slashdot.org/newsletter" target="_blank"><i class="icon-mail-squared"></i><span class="sr-only">Newsletter</span></a></li>
+	</ul>
+</nav>
+			</div>
+		</div>
+
+		<section>
+		
+			<div class="message-bar" id="firehose-message-tray">
+				<span class="icon-quote-left"></span>
+				<p>
+					
+						
+						Become a fan of Slashdot on <a href="http://www.facebook.com/pages/Slashdotorg/267995220856">Facebook</a>
+					
+				</p>
+			</div>
+		
+		
+			<div id='embbeded_login_modal' class="hide">
+<form action="https://slashdot.org/my/login" method="post" onsubmit="if (global_returnto) { this.returnto.value = global_returnto }" class="embedded"><fieldset style="-webkit-border-radius:10px 10px 0 0;border-radius:10px 10px 0 0;-moz-border-radius:10px 10px 0 0">
+<div style='height:25px;'>&nbsp;</div>
+    <input type="hidden" name="returnto" value="">
+    <input type="hidden" name="op" value="userlogin">
+    <p>
+        <label class="fleft" for="unickname">Nickname:</label>
+        <input type="text" name="unickname" value="">
+    </p>
+    <p>
+        <label class="fleft" for="upasswd">Password:</label>
+        <input type="password" name="upasswd" placeholder="6-20 characters long">
+    </p>
+    <label class="checkbox"><input type="checkbox" name="login_temp" value="yes"> Public Terminal</label>
+    <br>
+    <hr>
+    <input type="submit" name="userlogin" value="Log In" class="fno"> <a href="//slashdot.org/my/mailpassword" class="btn link" onclick="getModalPrefs('sendPasswdModal', 'Retrieve Password', 1); return false;">Forgot your password?</a>
+</fieldset></form>
+
+<div id="janrainEngageEmbed"></div>
+<div class="actions">
+ <a class="ico close" onclick="hide_login_slider();" href=""><span>Close</span></a>
+</div>
+</div>
+		
+		
+			<div class="adwrap">
+				
+				<div id='div-gpt-ad-728x90_a'><script type='text/javascript'>
+googletag.cmd.push(function(){
+googletag.display('div-gpt-ad-728x90_a');});</script></div>
+				<div id='div-gpt-ad-hubicon_200x90_a'><script type='text/javascript'>
+googletag.cmd.push(function(){
+googletag.display('div-gpt-ad-hubicon_200x90_a');});</script></div>
+			</div>
+		
+		<a name="main-articles"></a>
+	
+	<!-- header type=current end --><!--body begin -->
+
+
+
+
+
+
+
+
+	<style type="text/css">
+menu, menu * {
+	text-decoration:none;
+}
+
+menu[type=context] {
+	display:none;
+	position:absolute;
+	z-index:10000;
+}
+
+menu[type=context]:not(.brief) {
+	background-color:#dfdfdf;
+	margin:0;
+	padding:2px 0.5em;
+	border-style:solid;
+	border-width:1px;
+	border-color:#eeeeee #aaaaaa #aaaaaa #eeeeee;
+	-moz-border-radius-topright:.7em;
+	-webkit-border-top-right-radius: 0.7em 0.7em;
+}
+
+menu.full[type=context] > a.slash-hover:first-child {
+	-moz-border-radius-topright:.6em;
+	-webkit-border-top-right-radius: 0.6em 0.6em;
+}
+
+
+
+menu.brief[type=context] > a {
+	-moz-border-radius:.6em;
+	-webkit-border-radius: 0.6em;
+	color:#ffffff;
+	background-color:#000000;
+}
+
+/*
+span.briefmenu a.tag:not(.datatype) {
+    padding-left:.5em;
+}
+*/
+
+
+
+
+/* #tag-menu a, #feedback-menu a  { */
+menu.tag-menu-admin a {
+	display:list-item;
+	list-style:none;
+	text-align:left;
+	font-weight:bold;
+	color:black;
+	padding:0.1em 0.5em;
+	margin:-0.1em -0.5em;
+	cursor:pointer;
+}
+
+
+.tags .edit-bar { position:relative; }
+article aside .share .addthis_toolbox { display:block; width:60px; float:left; }
+article aside.view_mode .share { min-width:120px; padding-top:.5em; }
+#firehose.list article header h2 {padding-left: 20px; !important}
+.novote .vote { display:none; }
+
+.vote > a, .votedup > a, .voteddown > a {
+	display:inline-block;
+	height:22px;
+	width:22px;
+	margin: 2px 10px 0 0;
+	color:rgb(255,255,255);
+	text-decoration:none;
+	line-height:22px;
+	text-align:center;
+	font-weight:bold;
+	font-size:14px;
+	border-width:1px;
+	border-style:solid;
+	border-color:rgba(0,0,0,0.5);
+}
+
+.vote > a, .votedup > a, .voteddown > a {color:rgb(0,0,0);}
+
+article.fhitem-submission h2 .vote > a, article.fhitem-submission h2 .votedup > a, article.fhitem-submission h2 .voteddown > a { border-color:rgba(0,0,0,0.15); }
+.vote .up, .vote .down, .votedup .up, .votedup .down, .voteddown .up, .voteddown .down { border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; /* text-shadow:0 0 2px #000000; }*/}
+article:not(.fhitem-story) .vote .up,article:not(.fhitem-story) .vote .down,article:not(.fhitem-story) .votedup .up,article:not(.fhitem-story) .votedup .down,article:not(.fhitem-story) .voteddown .up,article:not(.fhitem-story) .voteddown .down { /*text-shadow:none !important; */}
+.voteddown .down, .votedup .up { margin-right: 10px; text-indent:2px; line-height:24px; }
+article:not(.fhitem-story) .votedup .up,article:not(.fhitem-story) .voteddown .down {background: rgb(174,174,174);background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(174,174,174)), to(rgb(193,193,193)));background-image: -moz-linear-gradient(100% 100% 90deg,rgb(193,193,193), rgb(174,174,174) 100%);color:rgb(0,0,0);}
+article.fhitem-story .votedup .up,article.fhitem-story .voteddown .down {background: rgb(0,66,66);background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(0,53,53)), to(rgb(0,102,102)));background-image: -moz-linear-gradient(100% 100% 90deg,rgb(0,102,102), rgb(0,53,53) 100%);}
+
+
+
+
+#tag-menu span.var-tag {
+font-weight:normal;
+color:#444444;
+}
+
+menu.reasons-menu a {
+padding:0 .25em 0 .25em;
+font-size:80%;
+-moz-border-radius:.5em;
+-webkit-border-radius:.5em;
+cursor:pointer;
+}
+
+menu.reasons-menu a:hover {
+background:rgb(153,153,153);
+background:-moz-linear-gradient(100% 100% 90deg, rgb(102,102,102), rgb(153,153,153) 70%) repeat scroll 0 0 rgb(102,102,102);
+background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(153,153,153)), to(rgb(102,102,102)));
+color:#fff;
+text-decoration:none;
+font-weignt:normal;
+}
+
+article.fhitem-story menu.reasons-menu a:hover {
+background:#002323 !important;
+background:-moz-linear-gradient(100% 100% 90deg, #002323, #005353 70%) repeat scroll 0 0 #002323 !important;
+background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#005353), to(#002323)) !important;
+}
+
+
+menu.reasons-menu {
+	display:none;
+	margin:0;
+	padding:0;
+}
+
+div.fhitem h3 menu.reasons-menu {
+margin:0.25em 0 0;
+}
+
+div.fhitem h3 menu.reasons-menu a.tag {
+font-size:.8em;
+}
+
+#tag-menu a.slash-hover,
+#feedback-menu a.slash-hover,
+
+.tag-display span.tag:hover,
+.tag-display span.tag.trigger {
+	color:white;
+	background-color:rgb(0, 85, 85);
+}
+
+#tag-menu a.slash-hover span.var-tag {
+	color:#eee;
+}
+
+.tag-entry.default {
+        color:#ccc;
+}
+
+.brief .nix {
+	margin-top:-1.35em;
+	margin-left:0px;
+	margin-top:-1.15em;
+	text-decoration:none;
+	line-height:1.35em;
+	padding:0 2px;
+	-moz-border-radius:.6em 0 0 .6em;
+	-webkit-border-radius:.6em 0 0 .6em;
+	-o-border-radius:.6em 0 0 .6em;
+	border-radius:.6em 0 0 .6em;
+    color:#fff !important;
+    background:transparent !important;
+}
+
+.brief .nix:hover {
+    background:rgb(153,153,153) !important;
+    background:-moz-linear-gradient(100% 100% 90deg, rgb(102,102,102), rgb(153,153,153) 70%) repeat scroll 0 0 rgb(102,102,102) !important;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(153,153,153)), to(rgb(102,102,102))) !important;
+}
+
+</style>
+
+<menu id="nix-reasons" style="display:none">
+	<a class="tag">binspam</a><a class="tag">dupe</a><a class="tag">notthebest</a><a class="tag">offtopic</a><a class="tag">slownewsday</a><a class="tag">stale</a><a class="tag">stupid</a>
+</menu>
+<menu id="nod-reasons" style="display:none">
+	<a class="tag">fresh</a><a class="tag">funny</a><a class="tag">insightful</a><a class="tag">interesting</a><a class="tag">maybe</a>
+</menu>
+<menu id="comment-nix-reasons" style="display:none">
+	<a class="tag">offtopic</a><a class="tag">flamebait</a><a class="tag">troll</a><a class="tag">redundant</a><a class="tag">overrated</a>
+</menu>
+<menu id="comment-nod-reasons" style="display:none">
+	<a class="tag">insightful</a><a class="tag">interesting</a><a class="tag">informative</a><a class="tag">funny</a><a class="tag">underrated</a>
+</menu>
+
+<menu id="tag-nod-reasons" style="display:none">
+	<a class="tag">descriptive</a>
+</menu>
+<menu id="feedback-menu" class="tag-menu-admin" type="context">
+	<a class="tag">typo</a><a class="tag">dupe</a><a class="tag">error</a>
+</menu>
+<menu id="tag-menu" class="tag-menu-admin none" type="context">
+
+<!--	<a data-op="!" class="nix">!<span class="var-tag hide"></span></a>-->
+
+</menu>
+
+<script type="text/javascript">
+$(function(){
+var $CURRENT_MENU, $TAG_MENU=$('#tag-menu'), NOTNOT=/^!!/, IE7=/^7\.0/, TAG_PREFIX=/^\/tag\//;
+
+function get_tag_name( $tag ){
+	return ($tag.attr('href') || '').replace(TAG_PREFIX, '') || $tag.text().toLowerCase();
+}
+
+function trigger_menu( e, selector, $menu, menu_content ){
+	var $target=$(original_target(e, selector)), in_use=$target.is('.trigger');
+	if ( $CURRENT_MENU ) {
+		$CURRENT_MENU.menu('cancel', e);
+		$CURRENT_MENU = null;
+	}
+
+	if ( !in_use ) {
+		menu_content && $menu.stop(true, true).hide().html(menu_content);
+		($CURRENT_MENU=$menu).menu('context', e);
+	}
+	return !in_use;
+}
+
+function open_menu( trigger, $menu ){
+	var $trigger=$(trigger), $fhitem=$trigger.closest('.fhitem');
+	$fhitem.length && user_intent('interest', $fhitem[0]);
+
+	$menu.appendTo(document.body).css({ opacity:0 }).show();
+
+	var 	right	= $fhitem.offset().left + $fhitem.width(),
+		global	= $trigger.offset(),
+		local	= $menu.offsetParent().offset();
+
+	// Ugly IE position hack required:
+	$.browser.msie && IE7.test($.browser.version) && (local.top = 0);
+
+	// pin the menu (horizontally) on-screen
+	global.left = Math.min(global.left, right-$menu.width());
+
+	$trigger.addClass('trigger');
+	$menu.css({
+		position:	'absolute',
+		top:		global.top - local.top + $trigger.height(),
+		left:		global.left - local.left,
+		opacity:	1
+	});
+}
+
+function close_menu( trigger, $menu ){
+	$menu.hide();
+	$(trigger).removeClass('trigger');
+	($CURRENT_MENU===$menu) && ($CURRENT_MENU=false);
+}
+
+/* T2 tag context-menu */
+var $TAG_MENU=$('#tag-menu'), NOTNOT=/^!!/;
+
+
+    var user_is_admin = 0;
+
+
+
+$('a[rel=tag]').live('mousedown',function(ea){
+    window.open(this.href);
+    return false;
+})
+
+$('.tag-bar .disagree').live('mousedown',function(ee){
+	var fhitem = $(original_target(ee)).closest('.fhitem')[0],
+		command = ('!' + $(original_target(ee)).attr("data-tag")).replace(NOTNOT, '');
+    try { Tags.submit(fhitem, command); } catch ( err ) {  }
+    return false;
+})
+
+
+
+$('a[rel=tag]').
+	live('mousedown', function( e ){
+        
+            return true;
+        
+
+	}).
+	live('click', function( e ){
+		if ( !logged_in ) {
+			var	target	= original_target(e),
+				tag	= $(target).text();
+			addfhfilter(tag);
+		}
+		e.preventDefault();
+		return false;
+	});
+
+$TAG_MENU.menu({
+	cssNamespace: 'slash',
+	liveTriggers: true,
+	clickDuration: 300,
+
+	start: function( e, ui ){
+		var	$tag	= $(ui.trigger),
+			tag	= get_tag_name($tag),
+			context	= firehose_settings && firehose_settings.viewtitle;
+
+		// Insert the tagname into the menu items where needed.
+		$TAG_MENU.find('span.var-tag').text(tag);
+		$TAG_MENU.find('a.nix').attr('title','not ' + tag);
+
+
+			// non-admins may only delete their own tags
+		$TAG_MENU.find('a:[data-op="-"]').toggle($tag.is('.my'));
+	
+
+		// *tagname* in *viewtitle*
+		$TAG_MENU.find('a:[data-op="="]').toggle(!!context);
+		context && $TAG_MENU.find('span.var-view').text(context);
+
+		open_menu($tag, $TAG_MENU);
+	},
+
+	select: function( e, ui ){
+		var	$tag	= $(ui.trigger),
+			tag	= get_tag_name($tag),
+			op	= $(ui.select).attr('data-op'),
+			fhitem,
+			command;
+
+		// Global for positioning other things.
+		$related_trigger = $tag;
+
+		switch ( op ) {
+			case '=':
+				addfhfilter(tag);
+				break;
+
+			default:
+				fhitem = $tag.closest('.fhitem')[0];
+				command = (op + tag).replace(NOTNOT, '');
+				try { Tags.submit(fhitem, command); } catch ( err ) {  }
+				break;
+		}
+	},
+
+	stop: function( e, ui ){ close_menu(ui.trigger, $TAG_MENU); }
+});
+
+
+
+
+/* T2 feedback context-menu */
+
+
+
+/* T2 datatype context-menu (admin-only) */
+
+
+
+
+
+
+});
+</script>
+	
+
+
+
+<div class="container">
+	<div class="main-wrap  has-rail-right">
+		<div class="main-content">
+			<div id="firehose" class="nothumbs ">
+				<!-- WIT -->
+				<a name="articles"></a>
+
+
+				
+					
+				
+
+
+				<div id="firehoselist" class="fhroot row ">
+					<div id="announcement">
+ Compare cell phone plans using <a href="https://www.wirefly.com/content/phone-plans?pk_campaign=slashdotannouncement" rel="nofollow"><strong>Wirefly's innovative plan comparison tool</a></strong>
+  <a href="" class="btn-close" title="don't show me this again" onclick="closeAnnouncement(); return false;">&times;</a>
+</div>
+
+
+<script type="text/javascript">
+
+if (!$.cookie('hide_sitenotice_36')) {
+	$('#announcement').fadeIn(300);
+}
+
+function closeAnnouncement() {
+	$('#announcement').fadeOut(300);
+	$.cookie('hide_sitenotice_36', 'true', { path: '/', domain: 'slashdot.org', expires: 28 });
+}
+</script>
+					<article id="firehose-85792629" data-fhid="85792629" data-fhtype="story" class="fhitem fhitem-story article usermode thumbs grid_24">
+		<span class="sd-info-block" style="display: none">
+			<span class="sd-key-firehose-id">85792629</span>
+			<span class="type">story</span>
+			
+		</span>
+
+
+
+
+
+	
+	
+
+<header>
+	
+		<span class="topic" id="topic-85792629">
+			<a href="//slashdot.org/index2.pl?fhfilter=eu" onclick="return addfhfilter('eu');">
+			
+				<img src="//a.fsdn.com/sd/topics/eu_64.png" width="64" height="64" alt="EU" title="EU">
+			
+		</a>
+		</span>
+	
+
+	<h2 class="story">
+		
+
+		
+
+		
+		
+
+		
+
+		
+
+		
+
+		<span id="title-85792629" class="story-title"> <a onclick="return toggle_fh_body_wrap_return(this);"  href="//yro.slashdot.org/story/16/08/30/1842249/europes-net-neutrality-doesnt-ban-bittorrent-throttling">Europe's Net Neutrality Doesn't Ban BitTorrent Throttling</a> <span class=" no extlnk"><a class="story-sourcelnk" href="https://torrentfreak.com/europes-net-neutrality-doesnt-ban-bittorrent-and-vpn-throttling-160830/"  title="External link - https://torrentfreak.com/europes-net-neutrality-doesnt-ban-bittorrent-and-vpn-throttling-160830/" target="_blank"> (torrentfreak.com) </a></span></span>
+
+		
+		
+		<!--<span class="comments commentcnt-85792629" >11</span>-->
+		
+
+		
+		<!-- comment bubble -->
+		
+			<span class="comment-bubble"><a href="//yro.slashdot.org/story/16/08/30/1842249/europes-net-neutrality-doesnt-ban-bittorrent-throttling#comments" title="">11</a></span>
+		
+	</h2>
+	<div class="details" id="details-85792629">
+		<span class="story-details">
+		<span class="story-views">
+			<span class="sodify" onclick="firehose_set_options('color', 'red')" title="Filter Firehose to entries rated red or better"></span><span class="icon-beaker pop1 " alt="Popularity" title="Filter Firehose to entries rated red or better" onclick="firehose_set_options('color', 'red')"><span></span></span> 
+		</span>
+		</span>
+		<span class="story-byline">
+	
+				
+			Posted
+				by 
+		
+		
+			
+				  manishs
+			
+		
+		
+
+		
+		
+		<time id="fhtime-85792629" datetime="on Tuesday August 30, 2016 @02:50PM">on Tuesday August 30, 2016 @02:50PM</time>
+		
+		
+			 from the <span class="dept-text">torrent-of-hate</span> dept.
+		
+		</span>
+	</div>
+</header>
+
+<div class="body" id="fhbody-85792629">
+	
+
+	
+		
+		<div id="text-85792629" class="p">
+			
+		 	
+				Millions of Europeans will have to do with throttling on BitTorrent. The Body of European Regulators of Electronic Communication (BEREC) published its guidelines for Europe's net neutrality rules on Tuesday in which it <a href="https://torrentfreak.com/europes-net-neutrality-doesnt-ban-bittorrent-and-vpn-throttling-160830/">hasn't challenged the BitTorrent throttling practices by many ISPs</a>. TorrentFreak reports:<i>Today, BEREC presented its final guidelines on the implementation of Europe's net neutrality rules. Compared to earlier drafts it includes several positive changes for those who value net neutrality. For example, while zero-rating isn't banned outright, internet providers are not allowed to offer a "sub Internet" service, where access to only part of the Internet is offered for 'free.' However, not all traffic is necessarily "neutral." ISPs are still allowed to throttle specific categories for "reasonable" network management purposes.</i><br>
+		 	
+		</div>
+
+		
+
+		
+
+		
+	</div>
+	<aside class="novote">
+		
+	</aside>
+	
+	  	
+
+		
+		<footer class="clearfix meta article-foot">
+			<div class="story-controls">
+				<div
+				  class="janrainSocialPlaceholder"
+				  data-janrain-url="https://yro.slashdot.org/story/16/08/30/1842249/europes-net-neutrality-doesnt-ban-bittorrent-throttling"
+				  data-janrain-title="Europe's Net Neutrality Doesn't Ban BitTorrent Throttling"
+				  data-janrain-message="Europe's Net Neutrality Doesn't Ban BitTorrent Throttling @slashdot"
+				></div>
+				
+                    
+					
+				
+			</div>
+			
+				
+				<div class="story-tags">
+					<span class="tright tags"><menu type="toolbar" class="edit-bar">
+		<span id="tagbar-85792629" class="tag-bar none">
+			<a  class="topic tag" rel="statictag" href="//slashdot.org/tag/" target="_blank"></a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/eu" target="_blank">eu</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/p2p" target="_blank">p2p</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/bittorrent" target="_blank">bittorrent</a>
+
+		</span>
+		
+			<a class="edit-toggle" href="/my/login/" onclick="show_login_box();return false;">
+				<span class="icon-tag btn collapse"></span>
+			</a>
+		
+		
+		<div class="tag-menu">
+			<input class="tag-entry default" type="text" value="apply tags">
+		</div>
+		
+
+		
+		
+
+	</menu></span>
+				</div>
+				
+			
+		</footer>
+	
+
+
+
+	</article><article id="firehose-85789803" data-fhid="85789803" data-fhtype="story" class="fhitem fhitem-story article usermode thumbs grid_24">
+		<span class="sd-info-block" style="display: none">
+			<span class="sd-key-firehose-id">85789803</span>
+			<span class="type">story</span>
+			
+		</span>
+
+
+
+
+
+	
+	
+
+<header>
+	
+		<span class="topic" id="topic-85789803">
+			<a href="//slashdot.org/index2.pl?fhfilter=japan" onclick="return addfhfilter('japan');">
+			
+				<img src="//a.fsdn.com/sd/topics/japan_64.png" width="64" height="64" alt="Japan" title="Japan">
+			
+		</a>
+		</span>
+	
+
+	<h2 class="story">
+		
+
+		
+
+		
+		
+
+		
+
+		
+
+		
+
+		<span id="title-85789803" class="story-title"> <a onclick="return toggle_fh_body_wrap_return(this);"  href="//tech.slashdot.org/story/16/08/30/1541237/mitsubishi-overstated-mileage-for-more-vehicle-models-japan-ministry-says">Mitsubishi Overstated Mileage For More Vehicle Models, Japan Ministry Says</a> <span class=" no extlnk"><a class="story-sourcelnk" href="http://www.reuters.com/article/us-mitsubishimotors-scandal-idUSKCN1150PL"  title="External link - http://www.reuters.com/article/us-mitsubishimotors-scandal-idUSKCN1150PL" target="_blank"> (reuters.com) </a></span></span>
+
+		
+		
+		<!--<span class="comments commentcnt-85789803" >21</span>-->
+		
+
+		
+		<!-- comment bubble -->
+		
+			<span class="comment-bubble"><a href="//tech.slashdot.org/story/16/08/30/1541237/mitsubishi-overstated-mileage-for-more-vehicle-models-japan-ministry-says#comments" title="">21</a></span>
+		
+	</h2>
+	<div class="details" id="details-85789803">
+		<span class="story-details">
+		<span class="story-views">
+			<span class="sodify" onclick="firehose_set_options('color', 'red')" title="Filter Firehose to entries rated red or better"></span><span class="icon-beaker pop1 " alt="Popularity" title="Filter Firehose to entries rated red or better" onclick="firehose_set_options('color', 'red')"><span></span></span> 
+		</span>
+		</span>
+		<span class="story-byline">
+	
+				
+			Posted
+				by 
+		
+		
+			
+				  manishs
+			
+		
+		
+
+		
+		
+		<time id="fhtime-85789803" datetime="on Tuesday August 30, 2016 @02:10PM">on Tuesday August 30, 2016 @02:10PM</time>
+		
+		
+			 from the <span class="dept-text">scandal-s01</span> dept.
+		
+		</span>
+	</div>
+</header>
+
+<div class="body" id="fhbody-85789803">
+	
+
+	
+		
+		<div id="text-85789803" class="p">
+			
+		 	
+				Earlier this year Mitsubishi admitted to using some less-than-correct tactics when calculating the fuel economy of <a href="https://tech.slashdot.org/story/16/04/26/1542218/mitsubishi-weve-been-cheating-on-fuel-tests-for-25-years">four of its Japanese market vehicles</a>. But that wasn't the end of the scandal. The Japanese transport ministry has announced that its investigation into Mitsubishi's practices has revealed <a href="http://www.reuters.com/article/us-mitsubishimotors-scandal-idUSKCN1150PL">eight additional vehicles with misreported fuel economy numbers</a>. Reuters reports:<i> Earlier in the day, Japan's transport ministry said its investigation had shown the automaker had overstated the fuel economy for eight vehicles including the RVR, Pajero and Outlander SUV models, in addition to four minivehicles initially confirmed in April. The latest announcement deals another reputational blow to Japan's sixth-largest automaker, which has been struggling to recover from the mileage scandal, which affected two minivehicle models produced for Nissan Motor Co Ltd. The company's market value has tumbled since the scandal broke, and the ordeal prompted the company to seek financial assistance from Nissan, which agreed to buy a controlling one-third stake for $2.2 billion.</i><br>
+		 	
+		</div>
+
+		
+
+		
+
+		
+	</div>
+	<aside class="novote">
+		
+	</aside>
+	
+	  	
+
+		
+		<footer class="clearfix meta article-foot">
+			<div class="story-controls">
+				<div
+				  class="janrainSocialPlaceholder"
+				  data-janrain-url="https://tech.slashdot.org/story/16/08/30/1541237/mitsubishi-overstated-mileage-for-more-vehicle-models-japan-ministry-says"
+				  data-janrain-title="Mitsubishi Overstated Mileage For More Vehicle Models, Japan Ministry Says"
+				  data-janrain-message="Mitsubishi Overstated Mileage For More Vehicle Models, Japan Ministry Says @slashdot"
+				></div>
+				
+                    
+					
+				
+			</div>
+			
+				
+				<div class="story-tags">
+					<span class="tright tags"><menu type="toolbar" class="edit-bar">
+		<span id="tagbar-85789803" class="tag-bar none">
+			<a  class="topic tag" rel="statictag" href="//slashdot.org/tag/" target="_blank"></a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/fraud" target="_blank">fraud</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/japan" target="_blank">japan</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/transportation" target="_blank">transportation</a>
+
+		</span>
+		
+			<a class="edit-toggle" href="/my/login/" onclick="show_login_box();return false;">
+				<span class="icon-tag btn collapse"></span>
+			</a>
+		
+		
+		<div class="tag-menu">
+			<input class="tag-entry default" type="text" value="apply tags">
+		</div>
+		
+
+		
+		
+
+	</menu></span>
+				</div>
+				
+			
+		</footer>
+	
+
+
+
+	</article><article id="firehose-85789641" data-fhid="85789641" data-fhtype="story" class="fhitem fhitem-story article usermode thumbs grid_24">
+		<span class="sd-info-block" style="display: none">
+			<span class="sd-key-firehose-id">85789641</span>
+			<span class="type">story</span>
+			
+		</span>
+
+
+
+
+
+	
+	
+
+<header>
+	
+		<span class="topic" id="topic-85789641">
+			<a href="//slashdot.org/index2.pl?fhfilter=transportation" onclick="return addfhfilter('transportation');">
+			
+				<img src="//a.fsdn.com/sd/topics/transportation_64.png" width="64" height="64" alt="Transportation" title="Transportation">
+			
+		</a>
+		</span>
+	
+
+	<h2 class="story">
+		
+
+		
+
+		
+		
+
+		
+
+		
+
+		
+
+		<span id="title-85789641" class="story-title"> <a onclick="return toggle_fh_body_wrap_return(this);"  href="//tech.slashdot.org/story/16/08/30/1533243/welcome-to-alphanumeric-car-hell">Welcome To Alphanumeric Car Hell</a> <span class=" no extlnk"><a class="story-sourcelnk" href="http://www.theverge.com/2016/8/30/12709302/welcome-to-alphanumeric-car-hell"  title="External link - http://www.theverge.com/2016/8/30/12709302/welcome-to-alphanumeric-car-hell" target="_blank"> (theverge.com) </a></span></span>
+
+		
+		
+		<!--<span class="comments commentcnt-85789641" >117</span>-->
+		
+
+		
+		<!-- comment bubble -->
+		
+			<span class="comment-bubble"><a href="//tech.slashdot.org/story/16/08/30/1533243/welcome-to-alphanumeric-car-hell#comments" title="">117</a></span>
+		
+	</h2>
+	<div class="details" id="details-85789641">
+		<span class="story-details">
+		<span class="story-views">
+			<span class="sodify" onclick="firehose_set_options('color', 'red')" title="Filter Firehose to entries rated red or better"></span><span class="icon-beaker pop1 " alt="Popularity" title="Filter Firehose to entries rated red or better" onclick="firehose_set_options('color', 'red')"><span></span></span> 
+		</span>
+		</span>
+		<span class="story-byline">
+	
+				
+			Posted
+				by 
+		
+		
+			
+				  manishs
+			
+		
+		
+
+		
+		
+		<time id="fhtime-85789641" datetime="on Tuesday August 30, 2016 @01:30PM">on Tuesday August 30, 2016 @01:30PM</time>
+		
+		
+			 from the <span class="dept-text">nomenclature</span> dept.
+		
+		</span>
+	</div>
+</header>
+
+<div class="body" id="fhbody-85789641">
+	
+
+	
+		
+		<div id="text-85789641" class="p">
+			
+		 	
+				Jason H. Harper, writing for The Verge:<i> Et tu, Hyundai? Until recently, the Korean brand offered two upmarket cars, the Genesis and the Equus. The first name had biblical shades and the latter shared a title with a play where an adolescent likes to get naked and straddle horses. So while the connotations were a bit muddled, at least they were memorable. Now Hyundai has spun Genesis into its own luxury brand, akin to what Toyota did with Lexus decades ago. And in so doing, it has cast off those memorable names in favor of an alphanumeric naming strategy. The Hyundai Genesis is reborn as the Genesis G80 and the Equus sheds its horsey homage to become the G90, which guarantees that I won't remember the new names. I'll just call the G90 the Model-Formerly-Known-as-Equus. And while the two models seemed well differentiated before, now the distinctions are hazy. The G90 apparently has 10 more units of something over the G80. Perhaps it is 10 percent better. Ten percent bigger? Ten grand more expensive? <a href="http://www.theverge.com/2016/8/30/12709302/welcome-to-alphanumeric-car-hell">Welcome to Alphanumeric Hell</a>.</i>The rest of the article is worth a read as well.<br>
+		 	
+		</div>
+
+		
+
+		
+
+		
+	</div>
+	<aside class="novote">
+		
+	</aside>
+	
+	  	
+
+		
+		<footer class="clearfix meta article-foot">
+			<div class="story-controls">
+				<div
+				  class="janrainSocialPlaceholder"
+				  data-janrain-url="https://tech.slashdot.org/story/16/08/30/1533243/welcome-to-alphanumeric-car-hell"
+				  data-janrain-title="Welcome To Alphanumeric Car Hell"
+				  data-janrain-message="Welcome To Alphanumeric Car Hell @slashdot"
+				></div>
+				
+                    
+					
+				
+			</div>
+			
+				
+				<div class="story-tags">
+					<span class="tright tags"><menu type="toolbar" class="edit-bar">
+		<span id="tagbar-85789641" class="tag-bar none">
+			<a  class="topic tag" rel="statictag" href="//slashdot.org/tag/" target="_blank"></a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/transportation" target="_blank">transportation</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/car" target="_blank">car</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/cars" target="_blank">cars</a>
+
+		</span>
+		
+			<a class="edit-toggle" href="/my/login/" onclick="show_login_box();return false;">
+				<span class="icon-tag btn collapse"></span>
+			</a>
+		
+		
+		<div class="tag-menu">
+			<input class="tag-entry default" type="text" value="apply tags">
+		</div>
+		
+
+		
+		
+
+	</menu></span>
+				</div>
+				
+			
+		</footer>
+	
+
+
+
+	</article><article id="firehose-85789565" data-fhid="85789565" data-fhtype="story" class="fhitem fhitem-story article usermode thumbs grid_24">
+		<span class="sd-info-block" style="display: none">
+			<span class="sd-key-firehose-id">85789565</span>
+			<span class="type">story</span>
+			
+		</span>
+
+
+
+
+
+	
+	
+
+<header>
+	
+		<span class="topic" id="topic-85789565">
+			<a href="//slashdot.org/index2.pl?fhfilter=facebook" onclick="return addfhfilter('facebook');">
+			
+				<img src="//a.fsdn.com/sd/topics/facebook_64.png" width="64" height="64" alt="Facebook" title="Facebook">
+			
+		</a>
+		</span>
+	
+
+	<h2 class="story">
+		
+
+		
+
+		
+		
+
+		
+
+		
+
+		
+
+		<span id="title-85789565" class="story-title"> <a onclick="return toggle_fh_body_wrap_return(this);"  href="//tech.slashdot.org/story/16/08/30/1529212/facebook-lets-users-prompt-danger-alert">Facebook Lets Users Prompt Danger Alert</a></span>
+
+		
+		
+		<!--<span class="comments commentcnt-85789565" >14</span>-->
+		
+
+		
+		<!-- comment bubble -->
+		
+			<span class="comment-bubble"><a href="//tech.slashdot.org/story/16/08/30/1529212/facebook-lets-users-prompt-danger-alert#comments" title="">14</a></span>
+		
+	</h2>
+	<div class="details" id="details-85789565">
+		<span class="story-details">
+		<span class="story-views">
+			<span class="sodify" onclick="firehose_set_options('color', 'red')" title="Filter Firehose to entries rated red or better"></span><span class="icon-beaker pop1 " alt="Popularity" title="Filter Firehose to entries rated red or better" onclick="firehose_set_options('color', 'red')"><span></span></span> 
+		</span>
+		</span>
+		<span class="story-byline">
+	
+				
+			Posted
+				by 
+		
+		
+			
+				  manishs
+			
+		
+		
+
+		
+		
+		<time id="fhtime-85789565" datetime="on Tuesday August 30, 2016 @12:50PM">on Tuesday August 30, 2016 @12:50PM</time>
+		
+		
+			 from the <span class="dept-text">good-things</span> dept.
+		
+		</span>
+	</div>
+</header>
+
+<div class="body" id="fhbody-85789565">
+	
+
+	
+		
+		<div id="text-85789565" class="p">
+			
+		 	
+				Facebook's Safety Check is a handy service that allows people to let their friends and family know they are okay in an event of emergency. The social giant announced the next major step for this feature. From a BBC report:<i> Facebook is to <a href="http://www.bbc.com/news/technology-37220396">enable members to trigger its Safety Check service themselves if a dangerous event occurs near them</a>. Until now, it could only be activated by Facebook staff. Safety Check lets people notify their friends and family that they are safe in the aftermath of a natural disaster or human conflict in their area. The recent earthquake in Italy marked the 25th time this year that it has been triggered. Safety notifications have reached one billion people in 2016 alone, the firm said. In the previous two years combined (2014 and 2015) it had only been activated 11 times. The Safety Check Facebook team uses three criteria to decide whether the tool should be switched on -- how many human lives are affected, the extent of that impact and the duration of the event.</i>
+		 	
+		</div>
+
+		
+
+		
+
+		
+	</div>
+	<aside class="novote">
+		
+	</aside>
+	
+	  	
+
+		
+		<footer class="clearfix meta article-foot">
+			<div class="story-controls">
+				<div
+				  class="janrainSocialPlaceholder"
+				  data-janrain-url="https://tech.slashdot.org/story/16/08/30/1529212/facebook-lets-users-prompt-danger-alert"
+				  data-janrain-title="Facebook Lets Users Prompt Danger Alert"
+				  data-janrain-message="Facebook Lets Users Prompt Danger Alert @slashdot"
+				></div>
+				
+                    
+					
+				
+			</div>
+			
+				
+				<div class="story-tags">
+					<span class="tright tags"><menu type="toolbar" class="edit-bar">
+		<span id="tagbar-85789565" class="tag-bar none">
+			<a  class="topic tag" rel="statictag" href="//slashdot.org/tag/" target="_blank"></a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/facebook" target="_blank">facebook</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/social" target="_blank">social</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/socialmedia" target="_blank">socialmedia</a>
+
+		</span>
+		
+			<a class="edit-toggle" href="/my/login/" onclick="show_login_box();return false;">
+				<span class="icon-tag btn collapse"></span>
+			</a>
+		
+		
+		<div class="tag-menu">
+			<input class="tag-entry default" type="text" value="apply tags">
+		</div>
+		
+
+		
+		
+
+	</menu></span>
+				</div>
+				
+			
+		</footer>
+	
+
+
+
+	</article><article id="firehose-85789329" data-fhid="85789329" data-fhtype="story" class="fhitem fhitem-story article usermode thumbs grid_24">
+		<span class="sd-info-block" style="display: none">
+			<span class="sd-key-firehose-id">85789329</span>
+			<span class="type">story</span>
+			
+		</span>
+
+
+
+
+
+	
+	
+
+<header>
+	
+		<span class="topic" id="topic-85789329">
+			<a href="//slashdot.org/index2.pl?fhfilter=cloud" onclick="return addfhfilter('cloud');">
+			
+				<img src="//a.fsdn.com/sd/topics/cloud_64.png" width="64" height="64" alt="Cloud" title="Cloud">
+			
+		</a>
+		</span>
+	
+
+	<h2 class="story">
+		
+
+		
+
+		
+		
+
+		
+
+		
+
+		
+
+		<span id="title-85789329" class="story-title"> <a onclick="return toggle_fh_body_wrap_return(this);"  href="//tech.slashdot.org/story/16/08/30/1512259/googles-close-to-beating-amazon-microsoft-for-a-major-cloud-client-sources">Google's Close To Beating Amazon, Microsoft For a Major Cloud Client: Sources</a> <span class=" no extlnk"><a class="story-sourcelnk" href="http://www.cnbc.com/2016/08/30/googles-cloud-favored-to-win-paypals-business-sources.html"  title="External link - http://www.cnbc.com/2016/08/30/googles-cloud-favored-to-win-paypals-business-sources.html" target="_blank"> (cnbc.com) </a></span></span>
+
+		
+		
+		<!--<span class="comments commentcnt-85789329" >39</span>-->
+		
+
+		
+		<!-- comment bubble -->
+		
+			<span class="comment-bubble"><a href="//tech.slashdot.org/story/16/08/30/1512259/googles-close-to-beating-amazon-microsoft-for-a-major-cloud-client-sources#comments" title="">39</a></span>
+		
+	</h2>
+	<div class="details" id="details-85789329">
+		<span class="story-details">
+		<span class="story-views">
+			<span class="sodify" onclick="firehose_set_options('color', 'red')" title="Filter Firehose to entries rated red or better"></span><span class="icon-beaker pop1 " alt="Popularity" title="Filter Firehose to entries rated red or better" onclick="firehose_set_options('color', 'red')"><span></span></span> 
+		</span>
+		</span>
+		<span class="story-byline">
+	
+				
+			Posted
+				by 
+		
+		
+			
+				  manishs
+			
+		
+		
+
+		
+		
+		<time id="fhtime-85789329" datetime="on Tuesday August 30, 2016 @12:10PM">on Tuesday August 30, 2016 @12:10PM</time>
+		
+		
+			 from the <span class="dept-text">cloud-race</span> dept.
+		
+		</span>
+	</div>
+</header>
+
+<div class="body" id="fhbody-85789329">
+	
+
+	
+		
+		<div id="text-85789329" class="p">
+			
+		 	
+				An anonymous reader shares a CNBC report:<i> Google's aggressive push into cloud computing, where it trails Amazon.com and Microsoft, has put the internet giant in the lead position to land a marquee client: PayPal. While Google is the front-runner, according to people familiar with the matter, PayPal is <a href="http://www.cnbc.com/2016/08/30/googles-cloud-favored-to-win-paypals-business-sources.html">evaluating the other leading providers and hasn't made any final decisions</a>. PayPal is unlikely to move its technology infrastructure in the fourth quarter, the peak period for online commerce, said the sources, who asked not to be named because the talks are confidential. Under the leadership of VMware co-founder Diane Greene, Google is out to prove that it's a legitimate player in the rapidly expanding cloud infrastructure market.</i><br>
+		 	
+		</div>
+
+		
+
+		
+
+		
+	</div>
+	<aside class="novote">
+		
+	</aside>
+	
+	  	
+
+		
+		<footer class="clearfix meta article-foot">
+			<div class="story-controls">
+				<div
+				  class="janrainSocialPlaceholder"
+				  data-janrain-url="https://tech.slashdot.org/story/16/08/30/1512259/googles-close-to-beating-amazon-microsoft-for-a-major-cloud-client-sources"
+				  data-janrain-title="Google's Close To Beating Amazon, Microsoft For a Major Cloud Client: Sources"
+				  data-janrain-message="Google's Close To Beating Amazon, Microsoft For a Major Cloud Client: Sources @slashdot"
+				></div>
+				
+                    
+					
+				
+			</div>
+			
+				
+				<div class="story-tags">
+					<span class="tright tags"><menu type="toolbar" class="edit-bar">
+		<span id="tagbar-85789329" class="tag-bar none">
+			<a  class="topic tag" rel="statictag" href="//slashdot.org/tag/" target="_blank"></a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/amazon" target="_blank">amazon</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/cloud" target="_blank">cloud</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/google" target="_blank">google</a>
+
+		</span>
+		
+			<a class="edit-toggle" href="/my/login/" onclick="show_login_box();return false;">
+				<span class="icon-tag btn collapse"></span>
+			</a>
+		
+		
+		<div class="tag-menu">
+			<input class="tag-entry default" type="text" value="apply tags">
+		</div>
+		
+
+		
+		
+
+	</menu></span>
+				</div>
+				
+			
+		</footer>
+	
+
+
+
+	</article><article id="firehose-85789249" data-fhid="85789249" data-fhtype="story" class="fhitem fhitem-story article usermode thumbs grid_24">
+		<span class="sd-info-block" style="display: none">
+			<span class="sd-key-firehose-id">85789249</span>
+			<span class="type">story</span>
+			
+		</span>
+
+
+
+
+
+	
+	
+
+<header>
+	
+		<span class="topic" id="topic-85789249">
+			<a href="//slashdot.org/index2.pl?fhfilter=it" onclick="return addfhfilter('it');">
+			
+				<img src="//a.fsdn.com/sd/topics/it_64.png" width="64" height="64" alt="IT" title="IT">
+			
+		</a>
+		</span>
+	
+
+	<h2 class="story">
+		
+
+		
+
+		
+		
+
+		
+
+		
+
+		
+
+		<span id="title-85789249" class="story-title"> <a onclick="return toggle_fh_body_wrap_return(this);"  href="//it.slashdot.org/story/16/08/30/158223/not-using-smartphones-can-improve-productivity-by-26-says-study">Not Using Smartphones Can Improve Productivity By 26%, Says Study</a> <span class=" no extlnk"><a class="story-sourcelnk" href="http://www.business-standard.com/article/technology/not-using-smartphones-can-improve-productivity-by-26-says-study-116082900664_1.html"  title="External link - http://www.business-standard.com/article/technology/not-using-smartphones-can-improve-productivity-by-26-says-study-116082900664_1.html" target="_blank"> (business-standard.com) </a></span></span>
+
+		
+		
+		<!--<span class="comments commentcnt-85789249" >103</span>-->
+		
+
+		
+		<!-- comment bubble -->
+		
+			<span class="comment-bubble"><a href="//it.slashdot.org/story/16/08/30/158223/not-using-smartphones-can-improve-productivity-by-26-says-study#comments" title="">103</a></span>
+		
+	</h2>
+	<div class="details" id="details-85789249">
+		<span class="story-details">
+		<span class="story-views">
+			<span class="sodify" onclick="firehose_set_options('color', 'red')" title="Filter Firehose to entries rated red or better"></span><span class="icon-beaker pop1 " alt="Popularity" title="Filter Firehose to entries rated red or better" onclick="firehose_set_options('color', 'red')"><span></span></span> 
+		</span>
+		</span>
+		<span class="story-byline">
+	
+				
+			Posted
+				by 
+		
+		
+			
+				  manishs
+			
+		
+		
+
+		
+		
+		<time id="fhtime-85789249" datetime="on Tuesday August 30, 2016 @11:31AM">on Tuesday August 30, 2016 @11:31AM</time>
+		
+		
+			 from the <span class="dept-text">good-vs-bad</span> dept.
+		
+		</span>
+	</div>
+</header>
+
+<div class="body" id="fhbody-85789249">
+	
+
+	
+		
+		<div id="text-85789249" class="p">
+			
+		 	
+				Smartphones do a plethora of things for us. But if you stopped using them, you might actually start seeing improvements in the work you do. From a Business-Standard report:<i> The study, commissioned by Kaspersky Lab, showed that employees' <a href="http://www.business-standard.com/article/technology/not-using-smartphones-can-improve-productivity-by-26-says-study-116082900664_1.html">performance improved 26 percent when their smartphones were taken away</a>. The experiment tested the behaviour of 95 persons between 19 and 56 years of age in laboratories at the universities of Wurzburg and Nottingham-Trent. The experiment unearthed a correlation between productivity levels and the distance between participants and their smartphones. "Instead of expecting permanent access to their smartphones, employee productivity might be boosted if they have dedicated 'smartphone-free' time. One way of doing this is to enforce rules such as no phones in the normal work environment," says Altaf Halde, managing director, South Asia at Kaspersky Lab.</i><br>
+		 	
+		</div>
+
+		
+
+		
+
+		
+	</div>
+	<aside class="novote">
+		
+	</aside>
+	
+	  	
+
+		
+		<footer class="clearfix meta article-foot">
+			<div class="story-controls">
+				<div
+				  class="janrainSocialPlaceholder"
+				  data-janrain-url="https://it.slashdot.org/story/16/08/30/158223/not-using-smartphones-can-improve-productivity-by-26-says-study"
+				  data-janrain-title="Not Using Smartphones Can Improve Productivity By 26%, Says Study"
+				  data-janrain-message="Not Using Smartphones Can Improve Productivity By 26%, Says Study @slashdot"
+				></div>
+				
+                    
+					
+				
+			</div>
+			
+				
+				<div class="story-tags">
+					<span class="tright tags"><menu type="toolbar" class="edit-bar">
+		<span id="tagbar-85789249" class="tag-bar none">
+			<a  class="topic tag" rel="statictag" href="//slashdot.org/tag/" target="_blank"></a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/it" target="_blank">it</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/culture" target="_blank">culture</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/habit" target="_blank">habit</a>
+
+		</span>
+		
+			<a class="edit-toggle" href="/my/login/" onclick="show_login_box();return false;">
+				<span class="icon-tag btn collapse"></span>
+			</a>
+		
+		
+		<div class="tag-menu">
+			<input class="tag-entry default" type="text" value="apply tags">
+		</div>
+		
+
+		
+		
+
+	</menu></span>
+				</div>
+				
+			
+		</footer>
+	
+
+
+
+	</article><article id="firehose-85788579" data-fhid="85788579" data-fhtype="story" class="fhitem fhitem-story article usermode thumbs grid_24">
+		<span class="sd-info-block" style="display: none">
+			<span class="sd-key-firehose-id">85788579</span>
+			<span class="type">story</span>
+			
+		</span>
+
+
+
+
+
+	
+	
+
+<header>
+	
+		<span class="topic" id="topic-85788579">
+			<a href="//slashdot.org/index2.pl?fhfilter=eu" onclick="return addfhfilter('eu');">
+			
+				<img src="//a.fsdn.com/sd/topics/eu_64.png" width="64" height="64" alt="EU" title="EU">
+			
+		</a>
+		</span>
+	
+
+	<h2 class="story">
+		
+
+		
+
+		
+		
+
+		
+
+		
+
+		
+
+		<span id="title-85788579" class="story-title"> <a onclick="return toggle_fh_body_wrap_return(this);"  href="//apple.slashdot.org/story/16/08/30/1423225/apple-ordered-to-pay-up-to-145-billion-in-eu-tax-crackdown-cook-refutes-eus-conclusion">Apple Ordered To Pay Up To $14.5 Billion in EU Tax Crackdown, Cook Refutes EU's Conclusion</a> <span class=" no extlnk"><a class="story-sourcelnk" href="http://www.bloomberg.com/news/articles/2016-08-30/apple-ordered-to-pay-up-to-14-5-billion-in-eu-tax-crackdown"  title="External link - http://www.bloomberg.com/news/articles/2016-08-30/apple-ordered-to-pay-up-to-14-5-billion-in-eu-tax-crackdown" target="_blank"> (bloomberg.com) </a></span></span>
+
+		
+		
+		<!--<span class="comments commentcnt-85788579" >297</span>-->
+		
+
+		
+		<!-- comment bubble -->
+		
+			<span class="comment-bubble"><a href="//apple.slashdot.org/story/16/08/30/1423225/apple-ordered-to-pay-up-to-145-billion-in-eu-tax-crackdown-cook-refutes-eus-conclusion#comments" title="">297</a></span>
+		
+	</h2>
+	<div class="details" id="details-85788579">
+		<span class="story-details">
+		<span class="story-views">
+			<span class="sodify" onclick="firehose_set_options('color', 'red')" title="Filter Firehose to entries rated red or better"></span><span class="icon-beaker pop1 " alt="Popularity" title="Filter Firehose to entries rated red or better" onclick="firehose_set_options('color', 'red')"><span></span></span> 
+		</span>
+		</span>
+		<span class="story-byline">
+	
+				
+			Posted
+				by 
+		
+		
+			
+				  manishs
+			
+		
+		
+
+		
+		
+		<time id="fhtime-85788579" datetime="on Tuesday August 30, 2016 @10:50AM">on Tuesday August 30, 2016 @10:50AM</time>
+		
+		
+			 from the <span class="dept-text">apple-and-taxes</span> dept.
+		
+		</span>
+	</div>
+</header>
+
+<div class="body" id="fhbody-85788579">
+	
+
+	
+		
+		<div id="text-85788579" class="p">
+			
+		 	
+				Apple has been ordered to pay a record sum of 13 billion euros ($14.5 billion) plus interest after the European Commission said Ireland illegally slashed the iPhone maker's tax bill, in a crackdown on fiscal loopholes that also risks inflaming tensions with the United States Treasury. According to the European Union regulator, Apple <a href="http://www.bloomberg.com/news/articles/2016-08-30/apple-ordered-to-pay-up-to-14-5-billion-in-eu-tax-crackdown">benefited from selective tax treatment that gave it an unfair advantage over other businesses</a>. In the meanwhile, Apple has refuted such accusations, saying that EU's conclusion has "<a href="http://www.apple.com/ie/customer-letter/">no basis in fact or law.</a>" EU Competition Commissioner Margrethe Vestager said, "If my effective tax rate would be 0.05 percent falling to 0.005 percent -- I would have felt that maybe I should have a second look at my tax bill." Apple CEO Tim Cook said, "Over the years, we received guidance from Irish tax authorities on how to comply correctly with Irish tax law -- the same kind of guidance available to any company doing business there. In Ireland and in every country where we operate, Apple follows the law and we pay all the taxes we owe."<br>
+		 	
+		</div>
+
+		
+
+		
+
+		
+	</div>
+	<aside class="novote">
+		
+	</aside>
+	
+	  	
+
+		
+		<footer class="clearfix meta article-foot">
+			<div class="story-controls">
+				<div
+				  class="janrainSocialPlaceholder"
+				  data-janrain-url="https://apple.slashdot.org/story/16/08/30/1423225/apple-ordered-to-pay-up-to-145-billion-in-eu-tax-crackdown-cook-refutes-eus-conclusion"
+				  data-janrain-title="Apple Ordered To Pay Up To $14.5 Billion in EU Tax Crackdown, Cook Refutes EU's Conclusion"
+				  data-janrain-message="Apple Ordered To Pay Up To $14.5 Billion in EU Tax Crackdown, Cook Refutes EU's Conclusion @slashdot"
+				></div>
+				
+                    
+					
+				
+			</div>
+			
+				
+				<div class="story-tags">
+					<span class="tright tags"><menu type="toolbar" class="edit-bar">
+		<span id="tagbar-85788579" class="tag-bar none">
+			<a  class="topic tag" rel="statictag" href="//slashdot.org/tag/" target="_blank"></a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/apple" target="_blank">apple</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/eu" target="_blank">eu</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/iphone" target="_blank">iphone</a>
+
+		</span>
+		
+			<a class="edit-toggle" href="/my/login/" onclick="show_login_box();return false;">
+				<span class="icon-tag btn collapse"></span>
+			</a>
+		
+		
+		<div class="tag-menu">
+			<input class="tag-entry default" type="text" value="apply tags">
+		</div>
+		
+
+		
+		
+
+	</menu></span>
+				</div>
+				
+			
+		</footer>
+	
+
+
+
+	</article><article id="firehose-85788355" data-fhid="85788355" data-fhtype="story" class="fhitem fhitem-story article usermode thumbs grid_24">
+		<span class="sd-info-block" style="display: none">
+			<span class="sd-key-firehose-id">85788355</span>
+			<span class="type">story</span>
+			
+		</span>
+
+
+
+
+
+	
+	
+
+<header>
+	
+		<span class="topic" id="topic-85788355">
+			<a href="//slashdot.org/index2.pl?fhfilter=intel" onclick="return addfhfilter('intel');">
+			
+				<img src="//a.fsdn.com/sd/topics/intel_64.png" width="64" height="64" alt="Intel" title="Intel">
+			
+		</a>
+		</span>
+	
+
+	<h2 class="story">
+		
+
+		
+
+		
+		
+
+		
+
+		
+
+		
+
+		<span id="title-85788355" class="story-title"> <a onclick="return toggle_fh_body_wrap_return(this);"  href="//hardware.slashdot.org/story/16/08/30/1410207/intel-unveils-full-details-of-kaby-lake-7th-gen-core-series-processors">Intel Unveils Full Details of Kaby Lake 7th Gen Core Series Processors</a> <span class=" no extlnk"><a class="story-sourcelnk" href="http://hothardware.com/reviews/intel-kaby-lake-architecture"  title="External link - http://hothardware.com/reviews/intel-kaby-lake-architecture" target="_blank"> (hothardware.com) </a></span></span>
+
+		
+		
+		<!--<span class="comments commentcnt-85788355" >65</span>-->
+		
+
+		
+		<!-- comment bubble -->
+		
+			<span class="comment-bubble"><a href="//hardware.slashdot.org/story/16/08/30/1410207/intel-unveils-full-details-of-kaby-lake-7th-gen-core-series-processors#comments" title="">65</a></span>
+		
+	</h2>
+	<div class="details" id="details-85788355">
+		<span class="story-details">
+		<span class="story-views">
+			<span class="sodify" onclick="firehose_set_options('color', 'red')" title="Filter Firehose to entries rated red or better"></span><span class="icon-beaker pop1 " alt="Popularity" title="Filter Firehose to entries rated red or better" onclick="firehose_set_options('color', 'red')"><span></span></span> 
+		</span>
+		</span>
+		<span class="story-byline">
+	
+				
+			Posted
+				by 
+		
+		
+			
+				  manishs
+			
+		
+		
+
+		
+		
+		<time id="fhtime-85788355" datetime="on Tuesday August 30, 2016 @10:10AM">on Tuesday August 30, 2016 @10:10AM</time>
+		
+		
+			 from the <span class="dept-text">new-processor-delights</span> dept.
+		
+		</span>
+	</div>
+</header>
+
+<div class="body" id="fhbody-85788355">
+	
+
+	
+		
+		<div id="text-85788355" class="p">
+			
+		 	
+				Reader <a href="/~MojoKid">MojoKid</a> writes: <i>Intel is readying a new family of processors, based on its next-gen Kaby Lake microarchitecture, that will be the foundation of the company's upcoming 7th Generation Core processors. Although Kaby Lake marks a departure from Intel's "tick-tock" release cadence, there have been some <a href="http://hothardware.com/reviews/intel-kaby-lake-architecture">tweaks made to its 14nm manufacturing process (called 14nm+)</a> that have resulted in significant gains in performance, based on clock speed boosts and other optimizations. In addition, Intel has incorporated a new multimedia engine into Kaby Lake that adds hardware acceleration for 4K HEVC 10-bit transcoding and VP9 decoding. Skylake could handle 1080p HEVC transcoding, but it didn't accelerate 4K HEVC 10-bit transcoding or VP9 decode and had to assist with CPU resources. The new multimedia engine gives Kaby Lake the ability to handle up to eight 4Kp30 streams and it can decode HEVC 4Kp60 real-time content at up to 120Mbps. The engine can also now offload 4Kp30 real-time encoding in a dedicated fixed-function engine. Finally, Intel has made some improvements to their Speed Shift technology, which now takes the processor out of low power states to maximum frequency in 15 milliseconds. Clock speed boosts across Core i and Core m 7th gen series processors of 400-500 MHz, in combination with Speed Shift optimizations, result in what <a href="http://hothardware.com/reviews/intel-kaby-lake-architecture?page=2">Intel claims are 12-9 percent performance gains</a> in the same power envelope as its previous generation Skylake series, and even more power efficient video processing performance.</i><br>
+		 	
+		</div>
+
+		
+
+		
+
+		
+	</div>
+	<aside class="novote">
+		
+	</aside>
+	
+	  	
+
+		
+		<footer class="clearfix meta article-foot">
+			<div class="story-controls">
+				<div
+				  class="janrainSocialPlaceholder"
+				  data-janrain-url="https://hardware.slashdot.org/story/16/08/30/1410207/intel-unveils-full-details-of-kaby-lake-7th-gen-core-series-processors"
+				  data-janrain-title="Intel Unveils Full Details of Kaby Lake 7th Gen Core Series Processors"
+				  data-janrain-message="Intel Unveils Full Details of Kaby Lake 7th Gen Core Series Processors @slashdot"
+				></div>
+				
+                    
+					
+				
+			</div>
+			
+				
+				<div class="story-tags">
+					<span class="tright tags"><menu type="toolbar" class="edit-bar">
+		<span id="tagbar-85788355" class="tag-bar none">
+			<a  class="topic tag" rel="statictag" href="//slashdot.org/tag/" target="_blank"></a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/hardware" target="_blank">hardware</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/intel" target="_blank">intel</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/amd" target="_blank">amd</a>
+
+		</span>
+		
+			<a class="edit-toggle" href="/my/login/" onclick="show_login_box();return false;">
+				<span class="icon-tag btn collapse"></span>
+			</a>
+		
+		
+		<div class="tag-menu">
+			<input class="tag-entry default" type="text" value="apply tags">
+		</div>
+		
+
+		
+		
+
+	</menu></span>
+				</div>
+				
+			
+		</footer>
+	
+
+
+
+	</article><article id="firehose-85779073" data-fhid="85779073" data-fhtype="story" class="fhitem fhitem-story article usermode thumbs grid_24">
+		<span class="sd-info-block" style="display: none">
+			<span class="sd-key-firehose-id">85779073</span>
+			<span class="type">story</span>
+			
+		</span>
+
+
+
+
+
+	
+	
+
+<header>
+	
+		<span class="topic" id="topic-85779073">
+			<a href="//slashdot.org/index2.pl?fhfilter=court" onclick="return addfhfilter('court');">
+			
+				<img src="//a.fsdn.com/sd/topics/court_64.png" width="64" height="64" alt="The Courts" title="The Courts">
+			
+		</a>
+		</span>
+	
+
+	<h2 class="story">
+		
+
+		
+
+		
+		
+
+		
+
+		
+
+		
+
+		<span id="title-85779073" class="story-title"> <a onclick="return toggle_fh_body_wrap_return(this);"  href="//tech.slashdot.org/story/16/08/30/0623210/grumpy-cat-wants-600k-from-pirating-coffee-maker">Grumpy Cat Wants $600K From 'Pirating' Coffee Maker</a> <span class=" no extlnk"><a class="story-sourcelnk" href="https://torrentfreak.com/grumpy-cat-wants-600k-from-pirating-coffee-maker-160829/"  title="External link - https://torrentfreak.com/grumpy-cat-wants-600k-from-pirating-coffee-maker-160829/" target="_blank"> (torrentfreak.com) </a></span></span>
+
+		
+		
+		<!--<span class="comments commentcnt-85779073" >128</span>-->
+		
+
+		
+		<!-- comment bubble -->
+		
+			<span class="comment-bubble"><a href="//tech.slashdot.org/story/16/08/30/0623210/grumpy-cat-wants-600k-from-pirating-coffee-maker#comments" title="">128</a></span>
+		
+	</h2>
+	<div class="details" id="details-85779073">
+		<span class="story-details">
+		<span class="story-views">
+			<span class="sodify" onclick="firehose_set_options('color', 'red')" title="Filter Firehose to entries rated red or better"></span><span class="icon-beaker pop1 " alt="Popularity" title="Filter Firehose to entries rated red or better" onclick="firehose_set_options('color', 'red')"><span></span></span> 
+		</span>
+		</span>
+		<span class="story-byline">
+	
+				
+			Posted
+				by 
+		
+		
+			
+				  <a href="https://twitter.com/BeauHD" rel="nofollow">BeauHD</a>
+			
+		
+		
+
+		
+		
+		<time id="fhtime-85779073" datetime="on Tuesday August 30, 2016 @09:00AM">on Tuesday August 30, 2016 @09:00AM</time>
+		
+		
+			 from the <span class="dept-text">someone-hasn't-had-their-coffee-this-morning</span> dept.
+		
+		</span>
+	</div>
+</header>
+
+<div class="body" id="fhbody-85779073">
+	
+
+	
+		
+		<div id="text-85779073" class="p">
+			
+		 	
+				<a href="/~Eloking">Eloking</a> quotes a report from TorrentFreak: <i>Grumpy Cat is not pleased, yet. Her owners have asked a California federal court to <a href="https://torrentfreak.com/grumpy-cat-wants-600k-from-pirating-coffee-maker-160829/">issue a $600,000 judgment against a coffee maker</a> which allegedly <a href="https://torrentfreak.com/images/grumpy-proposed-fdefault-order.pdf">exploited their copyrights</a> (PDF). In addition, they want damages for trademark and contract breach, and a ban on the company in question from selling any associated Grumpy Cat merchandise. There are dozens of celebrity cats on the internet, but Grumpy Cat probably tops them all. The cat's owners have made millions thanks to their pet's unique facial expression, which turned her into an overnight internet star. Part of this revenue comes from successful merchandise lines, including the Grumpy Cat "Grumppuccino" iced coffee beverage, sold by the California company Grenade Beverage. The company licensed the copyright and trademarks to sell the iced coffee, but is otherwise not affiliated with the cat and its owners. Initially this partnership went well, but after the coffee maker started to sell other "Grumpy Cat" products, things turned bad.</i> TorrentFreak adds: "The cat's owners, incorporated as Grumpy Cat LLC, <a href="http://www.cnbc.com/2015/12/16/grumpy-cat-sues-coffee-maker-over-copyright.html">took the matter to court last year</a> with demands for the coffee maker to stop infringing associated copyrights and trademarks. After Grenade Beverage failed to properly respond to the allegations, Grumpy Cat's owners moved for a default, which a court clerk entered in early June. A few days ago they went ahead and submitted a motion for default judgement."<br>
+		 	
+		</div>
+
+		
+
+		
+
+		
+	</div>
+	<aside class="novote">
+		
+	</aside>
+	
+	  	
+
+		
+		<footer class="clearfix meta article-foot">
+			<div class="story-controls">
+				<div
+				  class="janrainSocialPlaceholder"
+				  data-janrain-url="https://tech.slashdot.org/story/16/08/30/0623210/grumpy-cat-wants-600k-from-pirating-coffee-maker"
+				  data-janrain-title="Grumpy Cat Wants $600K From 'Pirating' Coffee Maker"
+				  data-janrain-message="Grumpy Cat Wants $600K From 'Pirating' Coffee Maker @slashdot"
+				></div>
+				
+                    
+					
+				
+			</div>
+			
+				
+				<div class="story-tags">
+					<span class="tright tags"><menu type="toolbar" class="edit-bar">
+		<span id="tagbar-85779073" class="tag-bar none">
+			<a  class="topic tag" rel="statictag" href="//slashdot.org/tag/" target="_blank"></a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/court" target="_blank">court</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/hardware" target="_blank">hardware</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/internet" target="_blank">internet</a>
+
+		</span>
+		
+			<a class="edit-toggle" href="/my/login/" onclick="show_login_box();return false;">
+				<span class="icon-tag btn collapse"></span>
+			</a>
+		
+		
+		<div class="tag-menu">
+			<input class="tag-entry default" type="text" value="apply tags">
+		</div>
+		
+
+		
+		
+
+	</menu></span>
+				</div>
+				
+			
+		</footer>
+	
+
+
+
+	</article><article id="firehose-85775605" data-fhid="85775605" data-fhtype="story" class="fhitem fhitem-story article usermode thumbs grid_24">
+		<span class="sd-info-block" style="display: none">
+			<span class="sd-key-firehose-id">85775605</span>
+			<span class="type">story</span>
+			
+		</span>
+
+
+
+
+
+	
+	
+
+<header>
+	
+		<span class="topic" id="topic-85775605">
+			<a href="//slashdot.org/index2.pl?fhfilter=space" onclick="return addfhfilter('space');">
+			
+				<img src="//a.fsdn.com/sd/topics/space_64.png" width="64" height="64" alt="Space" title="Space">
+			
+		</a>
+		</span>
+	
+
+	<h2 class="story">
+		
+
+		
+
+		
+		
+
+		
+
+		
+
+		
+
+		<span id="title-85775605" class="story-title"> <a onclick="return toggle_fh_body_wrap_return(this);"  href="//science.slashdot.org/story/16/08/30/0243233/hunt-for-ninth-planet-reveals-distant-solar-system-objects">Hunt For Ninth Planet Reveals Distant Solar System Objects</a> <span class=" no extlnk"><a class="story-sourcelnk" href="https://carnegiescience.edu/node/2082"  title="External link - https://carnegiescience.edu/node/2082" target="_blank"> (carnegiescience.edu) </a></span></span>
+
+		
+		
+		<!--<span class="comments commentcnt-85775605" >106</span>-->
+		
+
+		
+		<!-- comment bubble -->
+		
+			<span class="comment-bubble"><a href="//science.slashdot.org/story/16/08/30/0243233/hunt-for-ninth-planet-reveals-distant-solar-system-objects#comments" title="">106</a></span>
+		
+	</h2>
+	<div class="details" id="details-85775605">
+		<span class="story-details">
+		<span class="story-views">
+			<span class="sodify" onclick="firehose_set_options('color', 'red')" title="Filter Firehose to entries rated red or better"></span><span class="icon-beaker pop1 " alt="Popularity" title="Filter Firehose to entries rated red or better" onclick="firehose_set_options('color', 'red')"><span></span></span> 
+		</span>
+		</span>
+		<span class="story-byline">
+	
+				
+			Posted
+				by 
+		
+		
+			
+				  <a href="https://twitter.com/BeauHD" rel="nofollow">BeauHD</a>
+			
+		
+		
+
+		
+		
+		<time id="fhtime-85775605" datetime="on Tuesday August 30, 2016 @06:00AM">on Tuesday August 30, 2016 @06:00AM</time>
+		
+		
+			 from the <span class="dept-text">planet-9</span> dept.
+		
+		</span>
+	</div>
+</header>
+
+<div class="body" id="fhbody-85775605">
+	
+
+	
+		
+		<div id="text-85775605" class="p">
+			
+		 	
+				<a href="/~schwit1">schwit1</a> writes: <i>Astronomers have <a href="https://carnegiescience.edu/node/2082">discovered several new objects orbiting the Sun</a> at extremely great distances beyond the orbit of Neptune. The most interesting new discovery is 2014 FE72: "2014 FE72 is the first distant Oort Cloud object found with an orbit entirely beyond Neptune," reports Carnegie Institution for Science. "It has an orbit that takes the object so far away from the Sun (some 3000 times farther than Earth) that it is likely being influenced by forces of gravity from beyond our Solar System such as other stars and the galactic tide. It is the first object observed at such a large distance." This research is being done as part of an effort to discover a very large planet, possibly as much as 15 times the mass of Earth, that the scientists have proposed that exists out there.</i><br>
+		 	
+		</div>
+
+		
+
+		
+
+		
+	</div>
+	<aside class="novote">
+		
+	</aside>
+	
+	  	
+
+		
+		<footer class="clearfix meta article-foot">
+			<div class="story-controls">
+				<div
+				  class="janrainSocialPlaceholder"
+				  data-janrain-url="https://science.slashdot.org/story/16/08/30/0243233/hunt-for-ninth-planet-reveals-distant-solar-system-objects"
+				  data-janrain-title="Hunt For Ninth Planet Reveals Distant Solar System Objects"
+				  data-janrain-message="Hunt For Ninth Planet Reveals Distant Solar System Objects @slashdot"
+				></div>
+				
+                    
+					
+				
+			</div>
+			
+				
+				<div class="story-tags">
+					<span class="tright tags"><menu type="toolbar" class="edit-bar">
+		<span id="tagbar-85775605" class="tag-bar none">
+			<a  class="topic tag" rel="statictag" href="//slashdot.org/tag/" target="_blank"></a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/space" target="_blank">space</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/nasa" target="_blank">nasa</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/news" target="_blank">news</a>
+
+		</span>
+		
+			<a class="edit-toggle" href="/my/login/" onclick="show_login_box();return false;">
+				<span class="icon-tag btn collapse"></span>
+			</a>
+		
+		
+		<div class="tag-menu">
+			<input class="tag-entry default" type="text" value="apply tags">
+		</div>
+		
+
+		
+		
+
+	</menu></span>
+				</div>
+				
+			
+		</footer>
+	
+
+
+
+	</article><article id="firehose-85771929" data-fhid="85771929" data-fhtype="story" class="fhitem fhitem-story article usermode thumbs grid_24">
+		<span class="sd-info-block" style="display: none">
+			<span class="sd-key-firehose-id">85771929</span>
+			<span class="type">story</span>
+			
+		</span>
+
+
+
+
+
+	
+	
+
+<header>
+	
+		<span class="topic" id="topic-85771929">
+			<a href="//slashdot.org/index2.pl?fhfilter=space" onclick="return addfhfilter('space');">
+			
+				<img src="//a.fsdn.com/sd/topics/space_64.png" width="64" height="64" alt="Space" title="Space">
+			
+		</a>
+		</span>
+	
+
+	<h2 class="story">
+		
+
+		
+
+		
+		
+
+		
+
+		
+
+		
+
+		<span id="title-85771929" class="story-title"> <a onclick="return toggle_fh_body_wrap_return(this);"  href="//science.slashdot.org/story/16/08/29/218245/seti-has-observed-a-strong-signal-that-may-originate-from-a-sun-like-star">SETI Has Observed a 'Strong' Signal That May Originate From a Sun-like Star</a> <span class=" no extlnk"><a class="story-sourcelnk" href="http://arstechnica.com/science/2016/08/seti-has-observed-a-strong-signal-that-may-originate-from-a-sun-like-star/"  title="External link - http://arstechnica.com/science/2016/08/seti-has-observed-a-strong-signal-that-may-originate-from-a-sun-like-star/" target="_blank"> (arstechnica.com) </a></span></span>
+
+		
+		
+		<!--<span class="comments commentcnt-85771929" >223</span>-->
+		
+
+		
+		<!-- comment bubble -->
+		
+			<span class="comment-bubble"><a href="//science.slashdot.org/story/16/08/29/218245/seti-has-observed-a-strong-signal-that-may-originate-from-a-sun-like-star#comments" title="">223</a></span>
+		
+	</h2>
+	<div class="details" id="details-85771929">
+		<span class="story-details">
+		<span class="story-views">
+			<span class="sodify" onclick="firehose_set_options('color', 'red')" title="Filter Firehose to entries rated red or better"></span><span class="icon-beaker pop1 " alt="Popularity" title="Filter Firehose to entries rated red or better" onclick="firehose_set_options('color', 'red')"><span></span></span> 
+		</span>
+		</span>
+		<span class="story-byline">
+	
+				
+			Posted
+				by 
+		
+		
+			
+				  <a href="https://twitter.com/BeauHD" rel="nofollow">BeauHD</a>
+			
+		
+		
+
+		
+		
+		<time id="fhtime-85771929" datetime="on Tuesday August 30, 2016 @03:00AM">on Tuesday August 30, 2016 @03:00AM</time>
+		
+		
+			 from the <span class="dept-text">extraterrestrial-life</span> dept.
+		
+		</span>
+	</div>
+</header>
+
+<div class="body" id="fhbody-85771929">
+	
+
+	
+		
+		<div id="text-85771929" class="p">
+			
+		 	
+				An anonymous reader writes: <i>The RATAN-600 radio telescope in Zelenchukskaya, Russia has <a href="http://arstechnica.com/science/2016/08/seti-has-observed-a-strong-signal-that-may-originate-from-a-sun-like-star/">detected a strong signal around 11 GHz</a> (which is very unlikely to be naturally-caused) coming from <a href="http://exoplanetarchive.ipac.caltech.edu/cgi-bin/DisplayOverview/nph-DisplayOverview?objname=HD+164595+b&amp;type=CONFIRMED_PLANET">HD164595</a>, a star nearly identical in mass to the Sun and located about 95 light years from Earth. The system is known to have at least one planet. If the signal were isotropic, it would seem to indicate a <a href="https://en.wikipedia.org/wiki/Kardashev_scale">Kardashev Type II</a> civilization. While it is too early to draw any conclusions, the discovery will be discussed at an upcoming SETI committee meeting on September 27th.</i> According to Paul Gilster, author of the <a href="http://www.centauri-dreams.org/">Centauri Dreams website</a>, "No one is claiming that this is the work of an extraterrestrial civilization, but it is certainly worth further study. Working out the strength of the signal, the researchers say that if it came from an isotropic beacon, it would be of a power possible only for a Kardashev Type II civilization. If it were a narrow beam signal focused on our Solar System, it would be of a power available to a Kardashev Type I civilization. The possibility of noise of one form or another cannot be ruled out, and researchers in Paris led by Jean Schneider are considering the possible microlensing of a background source by HD164595. But the signal is provocative enough that the RATAN-600 researchers are calling for permanent monitoring of this target."<br>
+		 	
+		</div>
+
+		
+
+		
+
+		
+	</div>
+	<aside class="novote">
+		
+	</aside>
+	
+	  	
+
+		
+		<footer class="clearfix meta article-foot">
+			<div class="story-controls">
+				<div
+				  class="janrainSocialPlaceholder"
+				  data-janrain-url="https://science.slashdot.org/story/16/08/29/218245/seti-has-observed-a-strong-signal-that-may-originate-from-a-sun-like-star"
+				  data-janrain-title="SETI Has Observed a 'Strong' Signal That May Originate From a Sun-like Star"
+				  data-janrain-message="SETI Has Observed a 'Strong' Signal That May Originate From a Sun-like Star @slashdot"
+				></div>
+				
+                    
+					
+				
+			</div>
+			
+				
+				<div class="story-tags">
+					<span class="tright tags"><menu type="toolbar" class="edit-bar">
+		<span id="tagbar-85771929" class="tag-bar none">
+			<a  class="topic tag" rel="statictag" href="//slashdot.org/tag/" target="_blank"></a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/nasa" target="_blank">nasa</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/news" target="_blank">news</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/science" target="_blank">science</a>
+
+		</span>
+		
+			<a class="edit-toggle" href="/my/login/" onclick="show_login_box();return false;">
+				<span class="icon-tag btn collapse"></span>
+			</a>
+		
+		
+		<div class="tag-menu">
+			<input class="tag-entry default" type="text" value="apply tags">
+		</div>
+		
+
+		
+		
+
+	</menu></span>
+				</div>
+				
+			
+		</footer>
+	
+
+
+
+	</article><article id="firehose-85773683" data-fhid="85773683" data-fhtype="story" class="fhitem fhitem-story article usermode thumbs grid_24">
+		<span class="sd-info-block" style="display: none">
+			<span class="sd-key-firehose-id">85773683</span>
+			<span class="type">story</span>
+			
+		</span>
+
+
+
+
+
+	
+	
+
+<header>
+	
+		<span class="topic" id="topic-85773683">
+			<a href="//slashdot.org/index2.pl?fhfilter=earth" onclick="return addfhfilter('earth');">
+			
+				<img src="//a.fsdn.com/sd/topics/earth_64.png" width="64" height="64" alt="Earth" title="Earth">
+			
+		</a>
+		</span>
+	
+
+	<h2 class="story">
+		
+
+		
+
+		
+		
+
+		
+
+		
+
+		
+
+		<span id="title-85773683" class="story-title"> <a onclick="return toggle_fh_body_wrap_return(this);"  href="//science.slashdot.org/story/16/08/29/2341234/early-human-ancestor-lucy-died-falling-out-of-a-tree">Early Human Ancestor Lucy 'Died Falling Out of a Tree'</a> <span class=" no extlnk"><a class="story-sourcelnk" href="http://www.bbc.com/news/science-environment-37194764"  title="External link - http://www.bbc.com/news/science-environment-37194764" target="_blank"> (bbc.com) </a></span></span>
+
+		
+		
+		<!--<span class="comments commentcnt-85773683" >110</span>-->
+		
+
+		
+		<!-- comment bubble -->
+		
+			<span class="comment-bubble"><a href="//science.slashdot.org/story/16/08/29/2341234/early-human-ancestor-lucy-died-falling-out-of-a-tree#comments" title="">110</a></span>
+		
+	</h2>
+	<div class="details" id="details-85773683">
+		<span class="story-details">
+		<span class="story-views">
+			<span class="sodify" onclick="firehose_set_options('color', 'red')" title="Filter Firehose to entries rated red or better"></span><span class="icon-beaker pop1 " alt="Popularity" title="Filter Firehose to entries rated red or better" onclick="firehose_set_options('color', 'red')"><span></span></span> 
+		</span>
+		</span>
+		<span class="story-byline">
+	
+				
+			Posted
+				by 
+		
+		
+			
+				  <a href="https://twitter.com/BeauHD" rel="nofollow">BeauHD</a>
+			
+		
+		
+
+		
+		
+		<time id="fhtime-85773683" datetime="on Monday August 29, 2016 @11:30PM">on Monday August 29, 2016 @11:30PM</time>
+		
+		
+			 from the <span class="dept-text">pre-human</span> dept.
+		
+		</span>
+	</div>
+</header>
+
+<div class="body" id="fhbody-85773683">
+	
+
+	
+		
+		<div id="text-85773683" class="p">
+			
+		 	
+				An anonymous reader quotes a report from BBC: <i>New evidence suggests that the famous fossilized human ancestor dubbed "Lucy" by scientists <a href="http://www.bbc.com/news/science-environment-37194764">died falling from a great height -- probably out of a tree</a>. CT scans have shown injuries to her bones similar to those suffered by modern humans in similar falls. The 3.2 million-year-old hominin was found on a treed flood plain, making a branch her most likely final perch. It bolsters the view that her species -- <a href="https://en.wikipedia.org/wiki/Australopithecus_afarensis">Australopithecus afarensis</a> -- spent at least some of its life in the trees. <a href="http://nature.com/articles/doi:10.1038/nature19332">Writing in the journal Nature</a>, researchers from the U.S. and Ethiopia describe a "vertical deceleration event" which they argue caused Lucy's death. In particular they point to a crushed shoulder joint, of the sort seen when we humans reach out our arms to break a fall, as well as fractures of the ankle, leg bones, pelvis, ribs, vertebrae, arm, jaw and skull. Discovered in Ethiopia's Afar region in 1974, Lucy's 40%-complete skeleton is one of the world's best known fossils. She was around 1.1m (3ft 7in) tall and is thought to have been a young adult when she died. Her species, Australopithecus afarensis, shows signs of having walked upright on the ground and had lost her ancestors' ape-like, grasping feet -- but also had an upper body well-suited to climbing. The bones of this well-studied skeleton are in fact laced with fractures, like most fossils. By peering inside the bones in minute detail, the scanner showed that several of the fractures were "greenstick" breaks. The bone had bent and snapped like a twig: something that only happens to healthy, living bones.</i> "The Ethiopian ministry has agreed to release 3D files of Lucy's right shoulder and her left knee. So anyone with an interest in this can print Lucy out and evaluate these fractures, and our hypothesis, for themsleves." You can find the files <a href="https://elucy.org/">here</a>.<br>
+		 	
+		</div>
+
+		
+
+		
+
+		
+	</div>
+	<aside class="novote">
+		
+	</aside>
+	
+	  	
+
+		
+		<footer class="clearfix meta article-foot">
+			<div class="story-controls">
+				<div
+				  class="janrainSocialPlaceholder"
+				  data-janrain-url="https://science.slashdot.org/story/16/08/29/2341234/early-human-ancestor-lucy-died-falling-out-of-a-tree"
+				  data-janrain-title="Early Human Ancestor Lucy 'Died Falling Out of a Tree'"
+				  data-janrain-message="Early Human Ancestor Lucy 'Died Falling Out of a Tree' @slashdot"
+				></div>
+				
+                    
+					
+				
+			</div>
+			
+				
+				<div class="story-tags">
+					<span class="tright tags"><menu type="toolbar" class="edit-bar">
+		<span id="tagbar-85773683" class="tag-bar none">
+			<a  class="topic tag" rel="statictag" href="//slashdot.org/tag/" target="_blank"></a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/fossil" target="_blank">fossil</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/printer" target="_blank">printer</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/science" target="_blank">science</a>
+
+		</span>
+		
+			<a class="edit-toggle" href="/my/login/" onclick="show_login_box();return false;">
+				<span class="icon-tag btn collapse"></span>
+			</a>
+		
+		
+		<div class="tag-menu">
+			<input class="tag-entry default" type="text" value="apply tags">
+		</div>
+		
+
+		
+		
+
+	</menu></span>
+				</div>
+				
+			
+		</footer>
+	
+
+
+
+	</article><article id="firehose-85772923" data-fhid="85772923" data-fhtype="story" class="fhitem fhitem-story article usermode thumbs grid_24">
+		<span class="sd-info-block" style="display: none">
+			<span class="sd-key-firehose-id">85772923</span>
+			<span class="type">story</span>
+			
+		</span>
+
+
+
+
+
+	
+	
+
+<header>
+	
+		<span class="topic" id="topic-85772923">
+			<a href="//slashdot.org/index2.pl?fhfilter=programming" onclick="return addfhfilter('programming');">
+			
+				<img src="//a.fsdn.com/sd/topics/programming_64.png" width="64" height="64" alt="Programming" title="Programming">
+			
+		</a>
+		</span>
+	
+
+	<h2 class="story">
+		
+
+		
+
+		
+		
+
+		
+
+		
+
+		
+
+		<span id="title-85772923" class="story-title"> <a onclick="return toggle_fh_body_wrap_return(this);"  href="//apple.slashdot.org/story/16/08/29/2235250/c-programming-language-hits-a-15-year-low-on-the-tiobe-index">C Programming Language Hits a 15-Year Low On The TIOBE Index</a> <span class=" no extlnk"><a class="story-sourcelnk" href="http://www.businessinsider.com/c-hits-low-on-tiobe-index-2016-8"  title="External link - http://www.businessinsider.com/c-hits-low-on-tiobe-index-2016-8" target="_blank"> (businessinsider.com) </a></span></span>
+
+		
+		
+		<!--<span class="comments commentcnt-85772923" >181</span>-->
+		
+
+		
+		<!-- comment bubble -->
+		
+			<span class="comment-bubble"><a href="//apple.slashdot.org/story/16/08/29/2235250/c-programming-language-hits-a-15-year-low-on-the-tiobe-index#comments" title="">181</a></span>
+		
+	</h2>
+	<div class="details" id="details-85772923">
+		<span class="story-details">
+		<span class="story-views">
+			<span class="sodify" onclick="firehose_set_options('color', 'red')" title="Filter Firehose to entries rated red or better"></span><span class="icon-beaker pop1 " alt="Popularity" title="Filter Firehose to entries rated red or better" onclick="firehose_set_options('color', 'red')"><span></span></span> 
+		</span>
+		</span>
+		<span class="story-byline">
+	
+				
+			Posted
+				by 
+		
+		
+			
+				  <a href="https://twitter.com/BeauHD" rel="nofollow">BeauHD</a>
+			
+		
+		
+
+		
+		
+		<time id="fhtime-85772923" datetime="on Monday August 29, 2016 @09:40PM">on Monday August 29, 2016 @09:40PM</time>
+		
+		
+			 from the <span class="dept-text">new-low</span> dept.
+		
+		</span>
+	</div>
+</header>
+
+<div class="body" id="fhbody-85772923">
+	
+
+	
+		
+		<div id="text-85772923" class="p">
+			
+		 	
+				<a href="/~Gamoid">Gamoid</a> writes: <i>The venerable C programming language <a href="http://www.businessinsider.com/c-hits-low-on-tiobe-index-2016-8">hit a 15-year low on the TIOBE Index</a>, perhaps because more mobile- and web-friendly languages like Swift and Go are starting to eat its lunch.</i> "The C programming language has a <a href="http://www.tiobe.com/tiobe-index/">score of 11.303%</a>, which is its lowest score ever since we started the TIOBE index back in 2001," writes Paul Jansen, manager of TIOBE Index. With that said, C is still the second most popular programming language in the world, behind only Java. Also worth noting as mentioned by Matt Weinberger via Business Insider, "C doesn't currently have a major corporate sponsor; Oracle makes a lot of money from Java; Apple pushes both Swift and Objective-C for building iPhone apps. But no big tech company is getting on stage and pushing C as the future of development. So C's problems could be marketing as much as anything."<br>
+		 	
+		</div>
+
+		
+
+		
+
+		
+	</div>
+	<aside class="novote">
+		
+	</aside>
+	
+	  	
+
+		
+		<footer class="clearfix meta article-foot">
+			<div class="story-controls">
+				<div
+				  class="janrainSocialPlaceholder"
+				  data-janrain-url="https://apple.slashdot.org/story/16/08/29/2235250/c-programming-language-hits-a-15-year-low-on-the-tiobe-index"
+				  data-janrain-title="C Programming Language Hits a 15-Year Low On The TIOBE Index"
+				  data-janrain-message="C Programming Language Hits a 15-Year Low On The TIOBE Index @slashdot"
+				></div>
+				
+                    
+					
+				
+			</div>
+			
+				
+				<div class="story-tags">
+					<span class="tright tags"><menu type="toolbar" class="edit-bar">
+		<span id="tagbar-85772923" class="tag-bar none">
+			<a  class="topic tag" rel="statictag" href="//slashdot.org/tag/" target="_blank"></a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/java" target="_blank">java</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/money" target="_blank">money</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/oracle" target="_blank">oracle</a>
+
+		</span>
+		
+			<a class="edit-toggle" href="/my/login/" onclick="show_login_box();return false;">
+				<span class="icon-tag btn collapse"></span>
+			</a>
+		
+		
+		<div class="tag-menu">
+			<input class="tag-entry default" type="text" value="apply tags">
+		</div>
+		
+
+		
+		
+
+	</menu></span>
+				</div>
+				
+			
+		</footer>
+	
+
+
+
+	</article><article id="firehose-85772301" data-fhid="85772301" data-fhtype="story" class="fhitem fhitem-story article usermode thumbs grid_24">
+		<span class="sd-info-block" style="display: none">
+			<span class="sd-key-firehose-id">85772301</span>
+			<span class="type">story</span>
+			
+		</span>
+
+
+
+
+
+	
+	
+
+<header>
+	
+		<span class="topic" id="topic-85772301">
+			<a href="//slashdot.org/index2.pl?fhfilter=software" onclick="return addfhfilter('software');">
+			
+				<img src="//a.fsdn.com/sd/topics/software_64.png" width="64" height="64" alt="Software" title="Software">
+			
+		</a>
+		</span>
+	
+
+	<h2 class="story">
+		
+
+		
+
+		
+		
+
+		
+
+		
+
+		
+
+		<span id="title-85772301" class="story-title"> <a onclick="return toggle_fh_body_wrap_return(this);"  href="//science.slashdot.org/story/16/08/29/2136245/tesla-to-further-restrict-its-autopilot-software-to-prevent-accidents">Tesla To Further Restrict Its Autopilot Software To Prevent Accidents</a> <span class=" no extlnk"><a class="story-sourcelnk" href="https://electrek.co/2016/08/28/tesla-autopilot-safety-restrictions-v8-0-accidents/"  title="External link - https://electrek.co/2016/08/28/tesla-autopilot-safety-restrictions-v8-0-accidents/" target="_blank"> (electrek.co) </a></span></span>
+
+		
+		
+		<!--<span class="comments commentcnt-85772301" >134</span>-->
+		
+
+		
+		<!-- comment bubble -->
+		
+			<span class="comment-bubble"><a href="//science.slashdot.org/story/16/08/29/2136245/tesla-to-further-restrict-its-autopilot-software-to-prevent-accidents#comments" title="">134</a></span>
+		
+	</h2>
+	<div class="details" id="details-85772301">
+		<span class="story-details">
+		<span class="story-views">
+			<span class="sodify" onclick="firehose_set_options('color', 'red')" title="Filter Firehose to entries rated red or better"></span><span class="icon-beaker pop1 " alt="Popularity" title="Filter Firehose to entries rated red or better" onclick="firehose_set_options('color', 'red')"><span></span></span> 
+		</span>
+		</span>
+		<span class="story-byline">
+	
+				
+			Posted
+				by 
+		
+		
+			
+				  <a href="https://twitter.com/BeauHD" rel="nofollow">BeauHD</a>
+			
+		
+		
+
+		
+		
+		<time id="fhtime-85772301" datetime="on Monday August 29, 2016 @09:00PM">on Monday August 29, 2016 @09:00PM</time>
+		
+		
+			 from the <span class="dept-text">two-hands-on-the-wheel</span> dept.
+		
+		</span>
+	</div>
+</header>
+
+<div class="body" id="fhbody-85772301">
+	
+
+	
+		
+		<div id="text-85772301" class="p">
+			
+		 	
+				Tesla is <a href="https://electrek.co/2016/08/28/tesla-autopilot-safety-restrictions-v8-0-accidents/">planning to further restrict its Autopilot mode via a v8.0 software update</a> that will make it much harder for drivers to ignore safety alerts. Tesla's Autopilot currently issues alerts on the dashboard "reading Hold Steering Wheel and the driver has to apply pressure on the wheel to make it go away," reports Electrek. "If you quickly respond to those alerts, the Autopilot's Autosteer and Traffic Aware Cruise Control (TACC) do not disengage." The system will disengage if you ignore those warnings for too long. Electrek reports: <i> "Now we learn that Tesla is about to introduce a new restriction with the upcoming v8.0 software update to give more weight to the alerts. According to sources familiar with the Autopilot program, Tesla will add a safety restriction that will result in not only the Autopilot disengaging after alerts are repeatedly ignored, but also blocking the driver from re-engaging the feature after it was automatically disengaged. The driver will not be able to reactivate the Autopilot until the car is stopped and put in 'Park.' So far, it looks like it would only affect the Autosteer feature of the Autopilot and TACC would still be available for the duration of the drive. The goal of the new restriction appears to be to encourage Tesla owners to respond to the visual alert and not to ignore them." </i><br>
+		 	
+		</div>
+
+		
+
+		
+
+		
+	</div>
+	<aside class="novote">
+		
+	</aside>
+	
+	  	
+
+		
+		<footer class="clearfix meta article-foot">
+			<div class="story-controls">
+				<div
+				  class="janrainSocialPlaceholder"
+				  data-janrain-url="https://science.slashdot.org/story/16/08/29/2136245/tesla-to-further-restrict-its-autopilot-software-to-prevent-accidents"
+				  data-janrain-title="Tesla To Further Restrict Its Autopilot Software To Prevent Accidents"
+				  data-janrain-message="Tesla To Further Restrict Its Autopilot Software To Prevent Accidents @slashdot"
+				></div>
+				
+                    
+					
+				
+			</div>
+			
+				
+				<div class="story-tags">
+					<span class="tright tags"><menu type="toolbar" class="edit-bar">
+		<span id="tagbar-85772301" class="tag-bar none">
+			<a  class="topic tag" rel="statictag" href="//slashdot.org/tag/" target="_blank"></a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/science" target="_blank">science</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/software" target="_blank">software</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/tesla" target="_blank">tesla</a>
+
+		</span>
+		
+			<a class="edit-toggle" href="/my/login/" onclick="show_login_box();return false;">
+				<span class="icon-tag btn collapse"></span>
+			</a>
+		
+		
+		<div class="tag-menu">
+			<input class="tag-entry default" type="text" value="apply tags">
+		</div>
+		
+
+		
+		
+
+	</menu></span>
+				</div>
+				
+			
+		</footer>
+	
+
+
+
+	</article><article id="firehose-85772707" data-fhid="85772707" data-fhtype="story" class="fhitem fhitem-story article usermode thumbs grid_24">
+		<span class="sd-info-block" style="display: none">
+			<span class="sd-key-firehose-id">85772707</span>
+			<span class="type">story</span>
+			
+		</span>
+
+
+
+
+
+	
+	
+
+<header>
+	
+		<span class="topic" id="topic-85772707">
+			<a href="//slashdot.org/index2.pl?fhfilter=eu" onclick="return addfhfilter('eu');">
+			
+				<img src="//a.fsdn.com/sd/topics/eu_64.png" width="64" height="64" alt="EU" title="EU">
+			
+		</a>
+		</span>
+	
+
+	<h2 class="story">
+		
+
+		
+
+		
+		
+
+		
+
+		
+
+		
+
+		<span id="title-85772707" class="story-title"> <a onclick="return toggle_fh_body_wrap_return(this);"  href="//apple.slashdot.org/story/16/08/29/2216247/european-commission-to-issue-apple-an-irish-tax-bill-of-11-billion-says-report">European Commission To Issue Apple An Irish Tax Bill of $1.1 Billion, Says Report</a> <span class=" no extlnk"><a class="story-sourcelnk" href="http://www.reuters.com/article/us-eu-apple-taxavoidance-idUSKCN114211"  title="External link - http://www.reuters.com/article/us-eu-apple-taxavoidance-idUSKCN114211" target="_blank"> (reuters.com) </a></span></span>
+
+		
+		
+		<!--<span class="comments commentcnt-85772707" >188</span>-->
+		
+
+		
+		<!-- comment bubble -->
+		
+			<span class="comment-bubble"><a href="//apple.slashdot.org/story/16/08/29/2216247/european-commission-to-issue-apple-an-irish-tax-bill-of-11-billion-says-report#comments" title="">188</a></span>
+		
+	</h2>
+	<div class="details" id="details-85772707">
+		<span class="story-details">
+		<span class="story-views">
+			<span class="sodify" onclick="firehose_set_options('color', 'red')" title="Filter Firehose to entries rated red or better"></span><span class="icon-beaker pop1 " alt="Popularity" title="Filter Firehose to entries rated red or better" onclick="firehose_set_options('color', 'red')"><span></span></span> 
+		</span>
+		</span>
+		<span class="story-byline">
+	
+				
+			Posted
+				by 
+		
+		
+			
+				  <a href="https://twitter.com/BeauHD" rel="nofollow">BeauHD</a>
+			
+		
+		
+
+		
+		
+		<time id="fhtime-85772707" datetime="on Monday August 29, 2016 @08:20PM">on Monday August 29, 2016 @08:20PM</time>
+		
+		
+			 from the <span class="dept-text">nine-zeros</span> dept.
+		
+		</span>
+	</div>
+</header>
+
+<div class="body" id="fhbody-85772707">
+	
+
+	
+		
+		<div id="text-85772707" class="p">
+			
+		 	
+				An anonymous reader quotes a report from Reuters: <i>The European Commission will <a href="http://www.reuters.com/article/us-eu-apple-taxavoidance-idUSKCN114211">rule against Ireland's tax dealings with Apple on Tuesday</a>, two source familiar with the decision told Reuters, one of whom said Dublin would be told to recoup over 1 billion euros in back taxes. The European Commission accused Ireland in 2014 of dodging international tax rules by letting Apple shelter profits worth tens of billions of dollars from tax collectors in return for maintaining jobs. Apple and Ireland rejected the accusation; both have said they will appeal any adverse ruling. The source said the Commission will recommend a figure in back taxes that it expects to be collected, but it will be up to Irish authorities to calculate exactly what is owed. A bill in excess of 1 billion euros ($1.12 billion) would be far more than the 30 million euros each the European Commission previously ordered Dutch authorities to recover from U.S. coffee chain Starbucks and Luxembourg from Fiat Chrysler for their tax deals. When it <a href="https://apple.slashdot.org/story/14/06/11/1334200/apple-to-be-investigated-by-the-eu-over-tax-affairs">opened the Apple investigation in 2014</a>, the Commission told the Irish government that tax rulings it agreed in 1991 and 2007 with the iPhone maker amounted to state aid and might have broken EU laws. The Commission said the rulings were "reverse engineered" to ensure that Apple had a minimal Irish bill and that minutes of meetings between Apple representatives and Irish tax officials showed the company's tax treatment had been "motivated by employment considerations."</i><br>
+		 	
+		</div>
+
+		
+
+		
+
+		
+	</div>
+	<aside class="novote">
+		
+	</aside>
+	
+	  	
+
+		
+		<footer class="clearfix meta article-foot">
+			<div class="story-controls">
+				<div
+				  class="janrainSocialPlaceholder"
+				  data-janrain-url="https://apple.slashdot.org/story/16/08/29/2216247/european-commission-to-issue-apple-an-irish-tax-bill-of-11-billion-says-report"
+				  data-janrain-title="European Commission To Issue Apple An Irish Tax Bill of $1.1 Billion, Says Report"
+				  data-janrain-message="European Commission To Issue Apple An Irish Tax Bill of $1.1 Billion, Says Report @slashdot"
+				></div>
+				
+                    
+					
+				
+			</div>
+			
+				
+				<div class="story-tags">
+					<span class="tright tags"><menu type="toolbar" class="edit-bar">
+		<span id="tagbar-85772707" class="tag-bar none">
+			<a  class="topic tag" rel="statictag" href="//slashdot.org/tag/" target="_blank"></a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/apple" target="_blank">apple</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/business" target="_blank">business</a>
+<a  class="popular tag" rel="statictag" href="//slashdot.org/tag/eu" target="_blank">eu</a>
+
+		</span>
+		
+			<a class="edit-toggle" href="/my/login/" onclick="show_login_box();return false;">
+				<span class="icon-tag btn collapse"></span>
+			</a>
+		
+		
+		<div class="tag-menu">
+			<input class="tag-entry default" type="text" value="apply tags">
+		</div>
+		
+
+		
+		
+
+	</menu></span>
+				</div>
+				
+			
+		</footer>
+	
+
+
+
+	</article>
+				</div>
+
+				<!-- LOWER PAGINATION -->
+				<div class="row">
+					<div class="paginate" id="fh-pag-div">
+<div class="menu2" id="fh-paginate">
+
+
+
+
+
+	 
+	 <a class="prevnextbutdis" href="#" onclick="return false;">&laquo; Newer</a>
+
+	
+		<a class="prevnextbutact" href="//slashdot.org/?page=1" >Older &raquo;</a>
+
+	<span class="inactive more">
+		
+	</span>
+
+
+
+
+
+</div>
+</div>
+				</div>
+
+				<!-- WIT -->
+				<span id="itemsreturned" class="row">
+					
+				</span>
+				
+
+				<!-- index2_variant |A|-->
+				
+
+				<div class="row">
+				</div>
+
+				
+
+				<!-- Taboola: below articles widget -->
+<div class="row">
+	<div id="taboola-below-article-thumbnails-2nd"></div>
+	<script type="text/javascript">
+		window._taboola = window._taboola || [];
+		_taboola.push({
+			mode: 'thumbnails-b',
+			container: 'taboola-below-article-thumbnails-2nd',
+			placement: 'Below Article Thumbnails 2nd',
+			target_type: 'mix'
+		});
+	</script>
+</div>
+
+				<!-- Slashdot Deals 6 Best Sellers -->
+				<div class="row">
+					<div class="deals-wrapper">
+					  <div class="deals-header"><h1>Slashdot Top Deals</h1></div>
+					  <div id="deals-output">
+						<script id="deals-template" type="text/x-handlebars-template">
+						  {{#each deal}}
+							<div class="deal">
+							  <a href="{{urlPath permalink}}?&utm_source=slashdot.org&utm_medium=dealfeed-footerfeed&utm_campaign={{slug}}" target="_blank">
+							  	<img src="{{main_image}}" alt="" />
+							  </a>
+							  <p class="title"><a href="{{urlPath permalink}}?&utm_source=slashdot.org&utm_medium=dealfeed-footerfeed&utm_campaign={{slug}}" target="_blank">{{title}}</a></p>
+							  <p class="deal-price">{{centConversion price_in_cents}}</p>
+							</div>
+						  {{/each}}
+						</script>
+					  </div>
+					</div>
+				</div>
+				<script>
+					if ( isAdBlockActive ) {
+						$.getScript( "//a.fsdn.com/sd/js/scripts/min/deals-min.js", function(){
+							runDealsWidget();
+						});
+					}
+				</script>
+
+			<!-- End Slashdot Deals 6 Best Sellers -->
+
+				<!-- SLASH-4560 NEW AD HERE (dhand) -->
+				<div id="bottomadspace">
+					<table id="bottomadtable">
+						<tr>
+							<td><div id='div-gpt-ad-728x90_b'><script type='text/javascript'>
+googletag.cmd.push(function(){
+googletag.display('div-gpt-ad-728x90_b');});</script></div></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		
+	<aside id="slashboxes" class="rail-right">
+		<article class="deals-rail">
+		  <header id="slashdot_deals-title"><h2>Slashdot Top Deals</h2></header>
+		  <div id="deals-rail-output">
+			<script id="deals-rail-template" type="text/x-handlebars-template">
+				{{#each deal}}
+					<div class="">
+					  <a href="{{urlPath permalink}}?&utm_source=slashdot.org&utm_medium=dealfeed-righthand&utm_campaign={{slug}}" target="_blank">
+					  	<img src="{{main_image}}" alt="" />
+					  </a>
+					  <div class="deal-overlay">
+						  <div class="title"><a href="{{urlPath permalink}}?&utm_source=slashdot.org&utm_medium=dealfeed-righthand&utm_campaign={{slug}}" target="_blank">{{title}}</a></div>
+						  <div class="deal-price">{{centConversion price_in_cents}}</div>
+						</div>
+					</div>
+				{{/each}}
+			</script>
+		  </div>
+		</article>
+		<!-- Newsletter image -->
+		<div class="ad-blocked-newsletter">
+			<a href="//slashdot.org/newsletter" target="_blank"><img src="//a.fsdn.com/sd/NewsletterSubscription.png" alt="" /></a>
+		</div>
+
+
+		
+		
+			<div class="advertisement railad">
+<div id='div-gpt-ad-300x250_a'><script type='text/javascript'>
+googletag.cmd.push(function(){
+googletag.display('div-gpt-ad-300x250_a');});</script></div>
+</div>
+		
+			<script type="text/javascript">
+				$(function() {
+					// Poll/Pulse
+					(function(){
+						var sd_poll = $('#poll'),
+								pulsead = $('#div-gpt-ad-pulse_300x600_a');
+
+						sd_poll.hide();
+
+						function showSdPoll(){
+							if( pulsead.closest('.advertisement').height() < 250 ) {
+								sd_poll.fadeIn();
+								pulsead.closest('.advertisement').hide();
+							}
+						}
+						//this function will display the Slashdot Poll if the Pulse Ad is not delivered
+						setTimeout(function() { showSdPoll(); }, 2000);
+					})();
+				});
+			</script>
+			<div id='my_forgebox'>
+				 
+			</div>
+
+			
+
+					<article id="slashdot_deals" class="nosort">
+		<header id="slashdot_deals-title">
+			<h2><a href="http://deals.slashdot.org/">Slashdot Deals</a></h2>
+		</header>
+		<section class="b" id="slashdot_deals-content">
+			<script type='text/javascript'>
+googletag.cmd.push(function()
+{ googletag.defineSlot('/7346874/sld-300x250', [300, 250], 'div-gpt-ad-1435005138111-0').addService(googletag.pubads()); googletag.pubads().enableSingleRequest(); googletag.enableServices(); }
+);
+</script>
+<div id='div-gpt-ad-1435005138111-0' style='height:250px; width:300px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function()
+{ googletag.display('div-gpt-ad-1435005138111-0'); }
+);
+</script>
+
+</div>
+			
+		</section>
+	</article><div class="railad advertisement">
+<div id='div-gpt-ad-pulse_300x600_a'><script type='text/javascript'>
+googletag.cmd.push(function(){
+googletag.display('div-gpt-ad-pulse_300x600_a');});</script></div>
+</div><div class="railad advertisement">
+<div id='div-gpt-ad-300x250_b'><script type='text/javascript'>
+googletag.cmd.push(function(){
+googletag.display('div-gpt-ad-300x250_b');});</script></div>
+</div><article class="nosort">
+	<header id="poll-title">
+		<h2>Slashdot Poll</h2>
+	</header>
+	<section class="b" id="poll-content">
+		<style>
+		.poll-voted { display: none; }
+	</style>
+	
+		<div class="units-6 poll-group-form">
+			
+				<h3>My main computer runs the following operating system:</h3>
+			
+			<h3 class="output"></h3>
+			<form id="pollBooth" action="//slashdot.org/pollBooth.pl" method="post">
+				<input type="hidden" name="qid" value="2999">
+				
+					<input type="hidden" name="section" value="slashdot">
+				
+					
+						<label>
+							<input type="radio" name="aid" value="1">
+							*BSD
+						</label>
+					
+						<label>
+							<input type="radio" name="aid" value="2">
+							Linux - Debian based
+						</label>
+					
+						<label>
+							<input type="radio" name="aid" value="3">
+							Linux - RPM based
+						</label>
+					
+						<label>
+							<input type="radio" name="aid" value="4">
+							OS X 10.*
+						</label>
+					
+						<label>
+							<input type="radio" name="aid" value="5">
+							Solaris
+						</label>
+					
+						<label>
+							<input type="radio" name="aid" value="6">
+							Windows 7/8/10
+						</label>
+					
+						<label>
+							<input type="radio" name="aid" value="7">
+							Windows XP/Vista
+						</label>
+					
+						<label>
+							<input type="radio" name="aid" value="8">
+							Other (specify in comments)
+						</label>
+					
+					<div class="poll-controls">
+						<button type="submit" class="btn-polls">vote now</button>
+						
+					</div>
+					<footer>
+						<span>
+							<a href="/poll/2999/my-main-computer-runs-the-following-operating-system">Read the <strong>591</strong> comments </a> |
+							<strong>32790</strong> votes
+						</span>
+					</footer>
+			</form>
+		</div>
+		<div class="units-6 poll-results-inline">
+			<h3 id="message-completed-poll">
+				
+					Looks like someone has already voted from this IP. If you would like to vote please login and try again.
+				
+			</h3>
+			
+				<h3>My main computer runs the following operating system:</h3>
+			
+			<div class="doughnut-chart-wrapper">
+				<div class="doughnut-chart" data-percent="0"><span>0</span></div>
+				<div class="doughnut-chart-label">
+					<span>Percentage of others that also voted for:</span>
+					<h3></h3>
+				</div>
+			</div>
+
+			<div class="poll-controls">
+				<ul class="poll-options">
+					<li>
+						<a href="/poll/2999/my-main-computer-runs-the-following-operating-system" class="btn-polls">view results</a>
+					</li>
+					<li class="poll-choice"> Or <li>
+					<li>
+						<a href="//slashdot.org/polls" class="btn-polls">view more</a>
+						<input type="hidden" id="reskey" name="reskey" value="sP9S4nhmhRT8hd84blK3">
+					</li>
+				</ul>
+			</div>
+			<footer>
+				<span>
+					<a href="/poll/2999/my-main-computer-runs-the-following-operating-system">Read the <strong>591</strong> comments </a> |
+					<strong>32790</strong> voted
+				</span>
+			</footer>
+		</div>
+	</section>
+</article><div class="railad advertisement">
+<div id='div-gpt-ad-300x250_c'><script type='text/javascript'>
+googletag.cmd.push(function(){
+googletag.display('div-gpt-ad-300x250_c');});</script></div>
+</div><div id="taboola-below-main-column-thumbnails"></div>
+<script type="text/javascript">
+  if ( 1 || isAdBlockActive ) {
+      window._taboola = window._taboola || [];
+      _taboola.push({
+        mode: 'thumbnails-rr3',
+        container: 'taboola-below-main-column-thumbnails',
+        placement: 'Below Main Column Thumbnails',
+        target_type: 'mix'
+      });
+  };
+</script><article class="nosort">
+	<header id="mostdiscussed-title">
+		<h2>Most Discussed</h2>
+	</header>
+	<section class="b" id="mostdiscussed-content">
+		<ul id="mostdiscussed">
+
+
+<li>
+<span class="cmntcnt"><span class="slant"></span><span >543<span class="hide"> comments</span></span></span>
+ <a href="//hardware.slashdot.org/story/16/08/29/205205/65-year-old-woman-shoots-down-drone-over-her-virginia-property-with-one-shot?sbsrc=md">65-Year-Old Woman Shoots Down Drone Over Her Virginia Property With One Shot</a>
+</li>
+
+
+<li>
+<span class="cmntcnt"><span class="slant"></span><span >354<span class="hide"> comments</span></span></span>
+ <a href="//hardware.slashdot.org/story/16/08/28/2016242/ask-slashdot-whats-the-best-way-to-backup-large-amounts-of-personal-data?sbsrc=md">Ask Slashdot: What's The Best Way To Backup Large Amounts Of Personal Data?</a>
+</li>
+
+
+<li>
+<span class="cmntcnt"><span class="slant"></span><span >302<span class="hide"> comments</span></span></span>
+ <a href="//tech.slashdot.org/story/16/08/28/2339224/google-tests-a-software-that-judges-hollywoods-portrayal-of-women?sbsrc=md">Google Tests A Software That Judges Hollywood's Portrayal of Women</a>
+</li>
+
+
+<li>
+<span class="cmntcnt"><span class="slant"></span><span >285<span class="hide"> comments</span></span></span>
+ <a href="//apple.slashdot.org/story/16/08/29/1515224/apple-is-making-life-terrible-in-its-factories?sbsrc=md">Apple Is Making Life Terrible In Its Factories</a>
+</li>
+
+
+<li>
+<span class="cmntcnt"><span class="slant"></span><span >283<span class="hide"> comments</span></span></span>
+ <a href="//apple.slashdot.org/story/16/08/30/1423225/apple-ordered-to-pay-up-to-145-billion-in-eu-tax-crackdown-cook-refutes-eus-conclusion?sbsrc=md">Apple Ordered To Pay Up To $14.5 Billion in EU Tax Crackdown, Cook Refutes EU's Conclusion</a>
+</li>
+
+</ul>
+	</section>
+</article><article class="nosort">
+	<header id="srandblock-title">
+		<h2><a href="//ask.slashdot.org">Ask Slashdot</a></h2>
+	</header>
+	<section class="b" id="srandblock-content">
+		<ul>
+<li>
+
+	
+	<a href="//hardware.slashdot.org/story/16/08/28/2016242/ask-slashdot-whats-the-best-way-to-backup-large-amounts-of-personal-data?utm_source=rss0.9mainlinkanon&amp;utm_medium=feed&amp;sbsrc=askslashdot">
+		Ask Slashdot: What's The Best Way To Backup Large Amounts Of Personal Data?
+	</a>
+</li><li>
+
+	
+	<a href="//hardware.slashdot.org/story/16/08/26/1420259/ask-slashdot-do-you-still-use-optical-media?utm_source=rss0.9mainlinkanon&amp;utm_medium=feed&amp;sbsrc=askslashdot">
+		Ask Slashdot: Do You Still Use Optical Media?
+	</a>
+</li><li>
+
+	
+	<a href="//ask.slashdot.org/story/16/08/21/2155213/ask-slashdot-how-will-you-handle-microsofts-new-cumulative-windows-updates?utm_source=rss0.9mainlinkanon&amp;utm_medium=feed&amp;sbsrc=askslashdot">
+		Ask Slashdot: How Will You Handle Microsoft's New 'Cumulative' Windows Updates?
+	</a>
+</li><li>
+
+	
+	<a href="//ask.slashdot.org/story/16/08/21/0327239/ask-slashdot-is-kde-dying?utm_source=rss0.9mainlinkanon&amp;utm_medium=feed&amp;sbsrc=askslashdot">
+		Ask Slashdot: Is KDE Dying?
+	</a>
+</li><li>
+
+	
+	<a href="//ask.slashdot.org/story/16/08/15/0331239/ask-slashdot-are-there-secure-alternatives-to-skype?utm_source=rss0.9mainlinkanon&amp;utm_medium=feed&amp;sbsrc=askslashdot">
+		Ask Slashdot: Are There Secure Alternatives To Skype?
+	</a>
+</li>
+</ul>
+	</section>
+</article><article id="thisday" class="nosort">
+		<header id="thisday-title">
+			<h2><a href="">This Day on Slashdot</a></h2>
+		</header>
+		<section class="b" id="thisday-content">
+			<table bgcolor="333333" class="thisday-tb"><tbody>
+
+
+<tr>
+	<td class="thisday-yr">
+		2011
+	</td>
+	<td>
+		<a href="//tech.slashdot.org/story/11/08/30/142250/windows-8-to-natively-support-iso-and-vhd-mounting?sbsrc=thisday">Windows 8 To Natively Support ISO and VHD Mounting</a>
+	</td>
+	<td>
+	<span style="" class="cmntcnt"><span style="background:#333" class="slant"></span><span style="background: #333; color:#fff; font-weight:bold; font-size:.85em">656<span class="hide"> comments</span></span></span>
+	</td>
+</tr>
+
+
+<tr>
+	<td class="thisday-yr">
+		2008
+	</td>
+	<td>
+		<a href="//news.slashdot.org/story/08/08/30/022237/any-suggestions-for-a-meaningful-geeky-wedding-band?sbsrc=thisday">Any Suggestions For a Meaningful Geeky Wedding Band?</a>
+	</td>
+	<td>
+	<span style="" class="cmntcnt"><span style="background:#333" class="slant"></span><span style="background: #333; color:#fff; font-weight:bold; font-size:.85em">755<span class="hide"> comments</span></span></span>
+	</td>
+</tr>
+
+
+<tr>
+	<td class="thisday-yr">
+		2006
+	</td>
+	<td>
+		<a href="//slashdot.org/story/06/08/30/1819228/possession-of-violent-pornography-outlawed-in-uk?sbsrc=thisday">Possession of Violent Pornography Outlawed in UK</a>
+	</td>
+	<td>
+	<span style="" class="cmntcnt"><span style="background:#333" class="slant"></span><span style="background: #333; color:#fff; font-weight:bold; font-size:.85em">779<span class="hide"> comments</span></span></span>
+	</td>
+</tr>
+
+
+<tr>
+	<td class="thisday-yr">
+		2005
+	</td>
+	<td>
+		<a href="//linux.slashdot.org/story/05/08/30/1344225/five-reasons-not-to-use-linux?sbsrc=thisday">Five Reasons Not to Use Linux</a>
+	</td>
+	<td>
+	<span style="" class="cmntcnt"><span style="background:#333" class="slant"></span><span style="background: #333; color:#fff; font-weight:bold; font-size:.85em">1070<span class="hide"> comments</span></span></span>
+	</td>
+</tr>
+
+
+<tr>
+	<td class="thisday-yr">
+		2002
+	</td>
+	<td>
+		<a href="//yro.slashdot.org/story/02/08/30/1341233/want-freedom?sbsrc=thisday">Want Freedom?</a>
+	</td>
+	<td>
+	<span style="" class="cmntcnt"><span style="background:#333" class="slant"></span><span style="background: #333; color:#fff; font-weight:bold; font-size:.85em">1084<span class="hide"> comments</span></span></span>
+	</td>
+</tr>
+
+</tbody></table>
+			
+		</section>
+	</article><article id="sourceforge2" class="nosort">
+		<header id="sourceforge2-title">
+			<h2><a href="">Sourceforge Top Downloads</a></h2>
+		</header>
+		<section class="b" id="sourceforge2-content">
+			<ul class="sf_widget">
+    <li>
+                <a onclick="trackLink(this, 'sfSlashboxDownloadLink', 'http://sourceforge.net/projects/vlc/?source=sd_slashbox');return false;" href="http://sourceforge.net/projects/vlc/?source=sd_slashbox">VLC Media Player<span class="sf-size">822M Downloads</span></a>
+</li>
+   <li>
+                <a onclick="trackLink(this, 'sfSlashboxDownloadLink', 'http://sourceforge.net/projects/emule/?source=sd_slashbox');return false;" href="http://sourceforge.net/projects/emule/?source=sd_slashbox">eMule<span class="sf-size">683M Downloads</span></a>
+   </li>
+       <li>
+                <a onclick="trackLink(this, 'sfSlashboxDownloadLink', 'http://sourceforge.net/projects/azureus/?source=sd_slashbox');return false;" href="http://sourceforge.net/projects/azureus/?source=sd_slashbox">Azureus/vuze<span class="sf-size">539M Downloads</span></a>
+       </li>
+        <li>
+                <a onclick="trackLink(this, 'sfSlashboxDownloadLink', 'http://sourceforge.net/projects/aresgalaxy/?source=sd_slashbox');return false;" href="http://sourceforge.net/projects/aresgalaxy/?source=sd_slashbox">Ares Galaxy<span class="sf-size">338M Downloads</span></a>
+   </li>
+       <li>
+                <a onclick="trackLink(this, 'sfSlashboxDownloadLink', 'href=" http:="" sourceforge.net="" projects="" corefonts="" ');return="" false;"="" href="http://sourceforge.net/projects/corefonts/?source=sd_slashbox">Microsoft core fonts<span class="sf-size">300M Downloads</span></a>
+     </li>
+</ul>
+<div id="sf-logo">
+       <p>Powered By</p>
+      <a onclick="trackLink(this, 'sfSlashboxHomeLink', 'http://sourceforge.net/?source=sd_slashbox');return false;" href="http://sourceforge.net/?source=sd_slashbox">sf</a>
+</div>
+			
+		</section>
+	</article>
+					<div class="advertisement railad">
+<div id='div-gpt-ad-300x250_d'><script type='text/javascript'>
+googletag.cmd.push(function(){
+googletag.display('div-gpt-ad-300x250_d');});</script></div>
+</div>
+					
+						
+						
+					
+				
+			
+	</aside>
+</div>
+
+<script type="text/javascript">
+	firehose_exists = 1;
+	$(function(){
+	$('#firehose-filter').focus(function(event){ gFocusedText = this; })
+	.blur(function(event){
+		if ( gFocusedText === this ) {
+			gFocusedText = null;
+		}
+	});
+
+	
+	apply_updates_when(		'at-end', true);
+});
+
+			
+					firehose_settings.startdate = "";
+					firehose_settings.mode = "mixed";
+					firehose_settings.fhfilter = "";
+					firehose_settings.orderdir = "DESC";
+					firehose_settings.orderby = "createtime";
+					firehose_settings.duration = -1;
+					firehose_settings.color = "green";
+					firehose_settings.view = "stories";
+					firehose_settings.viewtitle = "";
+					firehose_settings.tab = "";
+					firehose_settings.base_filter = "";
+					firehose_settings.user_view_uid = "";
+					firehose_settings.sectionname = "Main";
+	
+	firehose_settings.issue = "";
+	firehose_settings.section = 13;
+	$('#searchquery').val(firehose_settings.fhfilter);
+
+	
+
+    fh_is_admin = 0;
+
+	firehose_sitename = "Slashdot";
+	firehose_slogan = "News for nerds, stuff that matters";
+    if (fh_is_admin) {
+	   firehose_update_title_count();
+    }
+	firehose_smallscreen = 0;
+
+	
+
+	
+	
+		firehose_settings.index = 1;
+	
+
+	
+
+	var firehose_action_time = 0;
+	var firehose_user_class = 0;
+	
+	
+	
+	var fh_color = "green";
+	fh_colors = [ "red", "orange", "yellow", "green", "blue", "indigo", "violet", "black" ];
+	var fh_colors_hash = new Array(0);
+	for (var i=0; i< fh_colors.length; i++) {
+		fh_colors_hash[fh_colors[i]] = i;
+	}
+
+	var fh_view_mode = "mixed";
+	firehose_settings.page = 0;
+	
+	fh_is_admin = 0;
+	var updateIntervalType = 2;
+	var inactivity_timeout = 3600;
+	setFirehoseAction();
+	var update_time = "2016-08-30 19:27:32";
+
+	var maxtime = "2016-08-30 19:27:32";
+	var insert_new_at = "top";
+
+	
+
+fh_ticksize = 15;
+sitename = 'idle.slashdot.org';
+
+
+
+
+
+</script><!-- footer type=current begin -->
+	
+	</section>
+	
+	
+
+
+	<footer id="fhft" class="grid_24 nf">
+		<div id="logo_nf" class="fleft">
+			<a href="//slashdot.org"><span>Slashdot</span></a>
+		</div>
+		<nav role="firehose footer">
+			
+
+			
+				<ul id="pagination-controls">
+					
+						
+						<li class="fleft">
+							<a href="//slashdot.org/?issue=20160830">Today</a>
+						</li>
+					
+						
+						<li class="fleft">
+							<a href="//slashdot.org/?issue=20160829">Monday</a>
+						</li>
+					
+						
+						<li class="fleft">
+							<a href="//slashdot.org/?issue=20160828">Sunday</a>
+						</li>
+					
+						
+						<li class="fleft">
+							<a href="//slashdot.org/?issue=20160827">Saturday</a>
+						</li>
+					
+						
+						<li class="fleft">
+							<a href="//slashdot.org/?issue=20160826">Friday</a>
+						</li>
+					
+						
+						<li class="fleft">
+							<a href="//slashdot.org/?issue=20160825">Thursday</a>
+						</li>
+					
+						
+						<li class="fleft">
+							<a href="//slashdot.org/?issue=20160824">Wednesday</a>
+						</li>
+					
+						
+						<li class="fleft">
+							<a href="//slashdot.org/?issue=20160823">Tuesday</a>
+						</li>
+					
+				</ul>
+				<script> /* fh_pag_update() */</script>
+			
+			<ul class="fright submitstory">
+					<li class="fright">
+						<a href="/submit">Submit<span class="opt"> Story</span></a>
+					</li>
+			</ul>
+		</nav>
+		
+
+
+	</footer>
+	<section class="bq">
+		<blockquote class="msg grid_24" cite="https://slashdot.org">
+			<p>The ideal voice for radio may be defined as showing no substance, no sex,
+no owner, and a message of importance for every housewife.
+		-- Harry V. Wade</p>
+			<span class="slant"></span>
+		</blockquote>
+	</section>
+	<footer id="ft" class="grid_24">
+		<nav class="grid_10" role="footer">
+			<ul>
+				<li><a href="//slashdot.org/faq">FAQ</a></li>
+				<li><a href="//slashdot.org/archive.pl">Story Archive</a></li>
+				<li><a href="//slashdot.org/hof.shtml">Hall of Fame</a></li>
+				<li><a href="http://slashdotmedia.com/advertising-and-marketing-services/">Advertising</a></li>
+				<li><a href="http://slashdotmedia.com/terms-of-use/">Terms</a></li>
+				<li><a href="http://slashdotmedia.com/privacy-statement/">Privacy</a></li>
+				<li id="teconsent"></li>
+				<li><a href="http://slashdotmedia.com/opt-out-choices/">Opt Out Choices</a></li>
+				<li><a href="//slashdot.org/faq/slashmeta.shtml">About</a></li>
+				<li><a href="mailto:feedback@slashdot.org">Feedback</a></li>
+				<li><a href="#" onclick="set_mobile_pref('mobile',1);return false;">Mobile View</a></li>
+				<li><a href="//slashdot.org/blog">Blog</a></li>
+			</ul>
+		</nav>
+		<br>
+		
+		<div class="grid_14 tright tm">Trademarks property of their respective owners. Comments owned by the poster. <span class="nobr">Copyright &copy; 2016 SlashdotMedia. All Rights Reserved.</span></div>
+                <script type="text/javascript" src="//consent-st.truste.com/get?name=notice.js&amp;domain=slashdot.org&amp;c=teconsent&amp;text=true"></script>
+	</footer>
+
+	
+	<div class="overlay"></div>
+<div class="modal-box">
+    <a href="#" id="close-modal">Close</a>
+    <article class="modal-content">
+    </article>
+    <footer>
+</div>
+
+
+
+
+<div id="modal_cover" class="hide" onclick="hide_modal_box(); return false;"></div>
+<div id="modal_box" class="hide">
+      <div id="modal_box_content"></div>
+      <header class="n">
+                  <span class="fadeout"></span>
+                  <span class="fadeoutfade"></span>
+		  <span class="pf"><a class="ico close" onclick="hide_modal_box(); return false;" href="#"><span>Close</span></a></span>
+		  <h3 class="pf"><div id="logo"><a href="//slashdot.org">Slashdot</a></div><span id="preference_title"></span></h3>
+      </header>
+</div>
+	
+	<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["setCookieDomain", "*.slashdot.org"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//analytics.slashdotmedia.com/";
+    _paq.push(['setTrackerUrl', u+'sd.php']);
+    _paq.push(['setSiteId', 40]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'sd.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//analytics.slashdotmedia.com/sd.php?idsite=40" style="border:0;" alt="" /></p></noscript>
+<!-- Datonics -->
+<script async type="text/javascript" src="//ads.pro-market.net/ads/scripts/site-143573.js"></script>
+	<script id="after-content" type="text/javascript">
+(function( $, fn, console ){
+	$ && fn && $(function(){ fn($, console); });
+})(window.jQuery, window.pageload_done, window.console);
+</script>
+	
+	<script type='text/javascript'>
+	if(!document.location.href.match(/source=autorefresh/)) {
+		document.write('<img src="//slashdot.org/images/js.gif?695">');
+	}
+</script>
+<noscript>
+	<img src="//slashdot.org/images/njs.gif?193">
+</noscript>
+	<div class="busy genericspinner hide"><span>Working...</span></div>
+	<script>
+		if(typeof(Storage)!=="undefined"){
+			window.scrollTo(0,sessionStorage.scrollPos);
+				$(window).scroll(function () {
+				//You've scrolled this much:
+				sessionStorage.scrollPos = $(window).scrollTop();
+			});
+		}
+		$(function(){
+			$('a').click(function(){
+				delete sessionStorage.scrollPos;
+			})
+		});
+		// window.onbeforeunload = function () {
+		// 	console.log('bakc button clicked');
+		// 	delete sessionStorage.scrollPos;
+		// }
+		window.onpopstate=function() {
+			delete sessionStorage.scrollPos;
+		}
+	</script>
+	
+
+	
+		<!-- 1x1 home page -->
+		<div id='div-gpt-ad-1x1'><script type='text/javascript'>
+googletag.cmd.push(function(){
+googletag.display('div-gpt-ad-1x1');});</script></div>
+	
+
+        <script type="text/javascript">
+          window._taboola = window._taboola || [];
+          _taboola.push({flush: true}); 
+        </script>       
+
+	</body>
+	</html>
+
+
+	<!-- footer type=current end -->
