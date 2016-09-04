@@ -1,11 +1,12 @@
 import java.io.*;
 import java.nio.file.*;
-class crip_transposicao{
+class descrip_transposicao{
     public static void main(String [] agrs) throws IOException{
-        byte[] nilo = Files.readAllBytes(Paths.get("1.input"));
-        FileOutputStream w = new FileOutputStream(new File("outputs/out_crip.txt"));
-        int colunas = 13, linhas = nilo.length/colunas;
-        if((nilo.length % colunas) != 0) linhas++;
+        byte[] nilo = Files.readAllBytes(Paths.get("outputs/out_crip.txt"));
+        FileOutputStream w = new FileOutputStream(new File("outputs/out_descrip.txt"));
+        int linhas = 13, colunas = nilo.length/linhas;
+        System.out.println("linhas:" + linhas + ", colunas:" + colunas);
+        if((nilo.length % linhas) != 0) colunas++;
         byte[][] matrix = new byte[linhas][colunas];
         byte[][] aux = new byte[colunas][linhas];
         for(int k = 0, b = 0; k < linhas; k++)
