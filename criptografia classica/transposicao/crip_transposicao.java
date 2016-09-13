@@ -9,10 +9,8 @@ class crip_transposicao{
         byte[][] matrix = new byte[linhas][colunas];
         byte[][] aux = new byte[colunas][linhas];
         for(int k = 0, b = 0; k < linhas; k++)
-            for(int y = 0; y < colunas && b < nilo.length; y++, b++){
-                matrix[k][y] = nilo[b];
-                aux[y][k] = matrix[k][y];
-            }
+            for(int y = 0; y < colunas && b < nilo.length; y++, b++)
+                aux[y][k] = nilo[b];
         for(int k = 0; k < colunas; k++)
             for(int y = 0; y < linhas; y++)
                 w.write(aux[k][y]);
