@@ -6,7 +6,6 @@ class crip_transposicao{
         FileOutputStream w = new FileOutputStream(new File("outputs/out_crip.txt"));
         int colunas = 13, linhas = nilo.length/colunas;
         if((nilo.length % colunas) != 0) linhas++;
-        byte[][] matrix = new byte[linhas][colunas];
         byte[][] aux = new byte[colunas][linhas];
         for(int k = 0, b = 0; k < linhas; k++)
             for(int y = 0; y < colunas && b < nilo.length; y++, b++)
