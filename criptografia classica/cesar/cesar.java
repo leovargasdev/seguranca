@@ -7,14 +7,14 @@ public class cesar{
         this.juca = v;
     }
     public void criptografar(int key) throws IOException{
-        FileOutputStream w = new FileOutputStream(new File("outputs/out_cesar.txt"));
+        FileOutputStream w = new FileOutputStream(new File("cesar/outputs/out_crip.txt"));
         for(int oxa = 0; oxa < this.juca.length; oxa++)
             this.juca[oxa] = (byte)(( this.juca[oxa] + key)%256);
         w.write(this.juca);
         w.close();
     }
     public void descriptografar(int key, byte [] juca) throws IOException{
-        FileOutputStream w = new FileOutputStream(new File("outputs/out_cesar_descrip.txt"));
+        FileOutputStream w = new FileOutputStream(new File("cesar/outputs/out_descrip.txt"));
         for(int oxa = 0; oxa < juca.length; oxa++)
             juca[oxa] = (byte)(( juca[oxa] - key)%256);
         w.write(juca);

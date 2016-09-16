@@ -7,7 +7,7 @@ public class vigenere {
         this.chico = v;
     }
     public void criptografar(byte[] key) throws IOException{
-        FileOutputStream w = new FileOutputStream(new File("outputs/out_vigenere.txt"));
+        FileOutputStream w = new FileOutputStream(new File("vigenere/outputs/out_crip.txt"));
         int a = 0;
         while(a < this.chico.length)
             for(int k = 0; k < key.length && a < this.chico.length; k++, a++)
@@ -15,7 +15,7 @@ public class vigenere {
         this.c_and_w(w, this.chico);
     }
     public void descriptografar(byte [] key, byte [] chico) throws IOException{
-        FileOutputStream w = new FileOutputStream(new File("outputs/out_vigenere_descrip.txt"));
+        FileOutputStream w = new FileOutputStream(new File("vigenere/outputs/out_descrip.txt"));
         int a = 0;
         while(a < chico.length)
             for(int k = 0; k < key.length && a < chico.length; k++, a++)
