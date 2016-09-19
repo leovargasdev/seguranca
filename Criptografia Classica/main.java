@@ -3,6 +3,7 @@ import java.nio.file.*;
 import cesar.*;
 import transposicao.*;
 import vigenere.*;
+import substituicao.*;
 class main{
     public static void main(String [] args)throws IOException{
         byte[] inputC = Files.readAllBytes(Paths.get("inputs/1.input"));
@@ -20,5 +21,10 @@ class main{
         /*------------- Cifra de Transposicao ----------*/
         transposicao t = new transposicao(inputT);
         t.criptografar(ktransposicao);
+        t.descriptografar(ktransposicao, Files.readAllBytes(Paths.get("transposicao/outputs/out_crip.txt")));
+        /*------------- Cifra de Transposicao ----------*/
+        substituicao s = new substituicao(inputS);
+        s.criptografar();
+        //s.descriptografar(ktransposicao, Files.readAllBytes(Paths.get("substituicao/outputs/out_crip.txt")));
     }
 }
