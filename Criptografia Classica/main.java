@@ -25,6 +25,6 @@ class main{
         /*------------- Cifra de Transposicao ----------*/
         substituicao s = new substituicao(inputS);
         s.criptografar();
-        //s.descriptografar(ktransposicao, Files.readAllBytes(Paths.get("substituicao/outputs/out_crip.txt")));
+        //s.descriptografar(Files.readAllBytes(Paths.get("substituicao/outputs/out_crip.txt")));
     }
 }
