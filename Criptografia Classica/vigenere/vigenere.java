@@ -12,7 +12,8 @@ public class vigenere {
         while(a < this.chico.length)
             for(int k = 0; k < key.length && a < this.chico.length; k++, a++)
                 this.chico[a] = (byte)((this.chico[a] + key[k])%256);
-        this.c_and_w(w, this.chico);
+        w.write(this.chico);
+        w.close();
     }
     public void descriptografar(byte [] key, byte [] chico) throws IOException{
         FileOutputStream w = new FileOutputStream(new File("vigenere/outputs/out_descrip.txt"));
@@ -20,10 +21,14 @@ public class vigenere {
         while(a < chico.length)
             for(int k = 0; k < key.length && a < chico.length; k++, a++)
                 chico[a] = (byte)((chico[a] - key[k])%256);
-        this.c_and_w(w, chico);
-    }
-    public void c_and_w(FileOutputStream w, byte[] v) throws IOException{
-        w.write(v);
+        w.write(chico);
         w.close();
+    }
+    public void ataqueClaro(byte[] martelo){
+        System.out.print("chave vigenere: ");
+        //for(int u = 0; u < this.chico.length; u++)
+        for(int u = 0; u < 4; u++)
+            System.out.print((char)((byte)(this.chico[u] - martelo[u])));
+        System.out.println();
     }
 }

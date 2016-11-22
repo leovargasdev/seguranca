@@ -32,4 +32,8 @@ public class transposicao{
                 w.write(aux[k][y]);
         w.close();
     }
+    public void ataqueClaro(){
+        System.out.println(this.nilo.length);
+        //System.out.println(this.nilo[0][0]);
+    }
 }

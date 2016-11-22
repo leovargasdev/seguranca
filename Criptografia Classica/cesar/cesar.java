@@ -13,11 +13,14 @@ public class cesar{
         w.write(this.juca);
         w.close();
     }
-    public void descriptografar(int key, byte [] juca) throws IOException{
+    public void descriptografar(int key, byte[] juca) throws IOException{
         FileOutputStream w = new FileOutputStream(new File("cesar/outputs/out_descrip.txt"));
         for(int oxa = 0; oxa < juca.length; oxa++)
             juca[oxa] = (byte)(( juca[oxa] - key)%256);
         w.write(juca);
         w.close();
+    }
+    public void ataqueClaro(byte asas){
+        System.out.println("chave cesar: " + ((int) this.juca[0] - asas));
     }
 }
