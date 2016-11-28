@@ -35,6 +35,6 @@ public class transposicao{
         w.close();
     }
     public void ataqueClaro(){
-        System.out.println("chave transposicao: " + this.nilo.length);
+        System.out.println("(ATAQUE CLARO) chave transposicao: " + this.nilo.length);
     }
 }

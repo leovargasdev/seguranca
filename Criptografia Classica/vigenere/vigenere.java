@@ -25,7 +25,7 @@ public class vigenere {
         w.close();
     }
     public void ataqueClaro(byte[] martelo){
-        System.out.print("chave vigenere: ");
+        System.out.print("(ATAQUE CLARO) chave vigenere: ");
         //for(int u = 0; u < this.chico.length; u++)
         for(int u = 0; u < 4; u++)
             System.out.print((char)((byte)(this.chico[u] - martelo[u])));
