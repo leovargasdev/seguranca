@@ -19,7 +19,7 @@ class main{
         c.ataqueClaro(textoClaro[0]);
         c.descriptografar(kcesar, Files.readAllBytes(Paths.get("cesar/outputs/out_crip.txt")));
         ae.ataqueCesar(c.juca);
-        //ae.ataqueCesar(Files.readAllBytes(Paths.get("cesar/outputs/7.input.ceasar.X")));
+        ae.ataqueCesar(Files.readAllBytes(Paths.get("cesar/outputs/7.input.ceasar.X")));
         /*------------- Cifra de Vigenere --------------*/
         vigenere v = new vigenere(inputV);
         v.criptografar(kvigenere);

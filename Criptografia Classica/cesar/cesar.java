@@ -24,7 +24,7 @@ public class cesar{
     public String ataqueEscuro(int key, byte[] pastor) throws IOException{
         for(int oxa = 0; oxa < pastor.length; oxa++)
             pastor[oxa] = (byte)(( pastor[oxa] - key)%256);
-        return new String(pastor, "UTF-8");
+        return new String(pastor, "UTF-8"); // Retorna o vetor de bytes descriptografado e converte em uma String.
     }
     public void ataqueClaro(byte asas){
         System.out.println("(ATAQUE CLARO) chave cesar: " + ((int) this.juca[0] - asas));
