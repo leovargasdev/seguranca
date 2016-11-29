@@ -6,7 +6,7 @@ import vigenere.*;
 import substituicao.*;
 class main{
     public static void main(String [] args)throws IOException{
-        byte[] kvigenere = "abcd".getBytes();
+        byte[] kvigenere = "abc".getBytes();
         byte[] textoClaro = Files.readAllBytes(Paths.get("inputs/7.input"));
         ataqueescuro ae = new ataqueescuro(new File("inputs/ataque_escuro.txt"));
         //byte[] textoClaro = Files.readAllBytes(Paths.get("inputs/carne.txt"));
@@ -24,6 +24,8 @@ class main{
         vigenere v = new vigenere(inputV);
         v.criptografar(kvigenere);
         v.ataqueClaro(textoClaro);
+        ae.ataqueVigenere(v.chico);
+        ae.ataqueVigenere(Files.readAllBytes(Paths.get("vigenere/outputs/7.input.vig.X")));
         v.descriptografar(kvigenere, Files.readAllBytes(Paths.get("vigenere/outputs/out_crip.txt")));
         /*------------- Cifra de Transposicao ----------*/
         transposicao t = new transposicao(inputT, ktransposicao);

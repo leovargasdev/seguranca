@@ -7,11 +7,12 @@ import vigenere.*;
 import substituicao.*;
 class ataqueescuro{
     public ArrayList <String> palavras = new ArrayList <String>();
-    public int acerto = 0;
+    public int acerto = 0, op = 1;//op = 1 = 75% de acerto, op = 2 = 90% de acerto.
+    public double porcentagem = 0.75;//pode ser de 75% ate 90% depende da opção no método
     public ataqueescuro(File l)throws IOException{
         Scanner s = new Scanner(l);
         while(s.hasNext())
-            palavras.add(s.nextLine());
+            palavras.add(s.nextLine().toLowerCase());
     }
     public boolean achaCHAVE(String[] palavrasDescrip){
         acerto = 0;
@@ -20,17 +21,30 @@ class ataqueescuro{
                 for(int k = 0; k < palavras.size(); k++)
                     if(palavrasDescrip[i].equals(palavras.get(k)))
                         acerto++;
-        if((palavrasDescrip.length*0.75) < acerto)// 75% das palavras pertencem a lingua
+        if((palavrasDescrip.length*porcentagem) <= acerto)//verifica a porcentagem de acerto
             return true;
         return false;
     }
-    public void ataqueCesar(byte[] juca)throws IOException{
+    public void ataqueCesar(byte[] pegasus)throws IOException{
         cesar c = new cesar();
-        for(int jabuti = 0; jabuti < Math.pow(10,3); jabuti++)//JABUTI variavel para ser as chaves possiveis.
-            if(this.achaCHAVE(c.ataqueEscuro(jabuti, juca.clone()).replaceAll("[^a-zA-Z1-9 ]", " ").toLowerCase().split(" "))){
-//Linha de cima: Passa para o metodo a string quebrada nos espaços, e nela so contem letra minúsculas e numeros.
+        for(int jabuti = 0; jabuti < Math.pow(10,3); jabuti++)//JABUTI variavel para ser as chaves possíveis.
+            if(this.achaCHAVE(c.ataqueEscuro(jabuti, pegasus.clone(), op))){
                 System.out.println("(ATAQUE ESCURO)chave cesar: " + jabuti);
                 break;
             }
+    }
+    public void ataqueVigenere(byte[] pegasus)throws IOException{
+        vigenere v = new vigenere();
+        String cobra = "abc0123456789";//possíveis caracteres na chave
+        int sz = cobra.length();
+        int n = (int)Math.pow(sz,3);//com a variavel cobra, fazer combinações de 3 em 3.
+        for(int i = 0; i < n; i++){
+            int p1 = i % sz, p2 = (i / sz) % sz, p3 = (i / sz / sz) % sz;
+            byte[] chave = {(byte)cobra.charAt(p1), (byte)cobra.charAt(p2), (byte)cobra.charAt(p3)};
+            if(this.achaCHAVE(v.ataqueEscuro(chave, pegasus.clone(), op))){
+                System.out.println("(ATAQUE ESCURO)chave vigenere: " + new String(chave, "UTF-8"));
+                break;
+            }
+        }
     }
 }
