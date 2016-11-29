@@ -47,4 +47,13 @@ class ataqueescuro{
             }
         }
     }
+    public void ataqueTransposicao(byte[] pegasus)throws IOException{
+        transposicao t = new transposicao();
+        for(int rena = 1; rena < pegasus.length; rena++){//rena variavel para ser as chaves possíveis.
+            if(this.achaCHAVE(t.ataqueEscuro(rena, pegasus.clone(), op))){
+                System.out.println("(ATAQUE ESCURO)chave transposicao: " + rena);
+                break;
+            }
+        }
+    }
 }
