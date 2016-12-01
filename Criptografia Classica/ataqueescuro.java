@@ -14,7 +14,7 @@ class ataqueescuro{
         while(s.hasNext())
             palavras.add(s.nextLine().toLowerCase());
     }
-    public boolean achaCHAVE(String[] palavrasDescrip){
+    public boolean TestaChave(String[] palavrasDescrip){
         acerto = 0;
         for(int i = 0; i < palavrasDescrip.length; i++)
             if(palavrasDescrip[i].length() != 0)//Ignora os vetores que ficaram com só com espaços
@@ -28,7 +28,7 @@ class ataqueescuro{
     public void ataqueCesar(byte[] pegasus)throws IOException{
         cesar c = new cesar();
         for(int jabuti = 0; jabuti < Math.pow(10,3); jabuti++)//JABUTI variavel para ser as chaves possíveis.
-            if(this.achaCHAVE(c.ataqueEscuro(jabuti, pegasus.clone(), op))){
+            if(this.TestaChave(c.ataqueEscuro(jabuti, pegasus.clone(), op))){
                 System.out.println("(ATAQUE ESCURO)chave cesar: " + jabuti);
                 break;
             }
@@ -41,7 +41,7 @@ class ataqueescuro{
         for(int i = 0; i < n; i++){
             int p1 = i % sz, p2 = (i / sz) % sz, p3 = (i / sz / sz) % sz;
             byte[] chave = {(byte)cobra.charAt(p1), (byte)cobra.charAt(p2), (byte)cobra.charAt(p3)};
-            if(this.achaCHAVE(v.ataqueEscuro(chave, pegasus.clone(), op))){
+            if(this.TestaChave(v.ataqueEscuro(chave, pegasus.clone(), op))){
                 System.out.println("(ATAQUE ESCURO)chave vigenere: " + new String(chave, "UTF-8"));
                 break;
             }
@@ -50,7 +50,7 @@ class ataqueescuro{
     public void ataqueTransposicao(byte[] pegasus)throws IOException{
         transposicao t = new transposicao();
         for(int rena = 1; rena < pegasus.length; rena++){//rena variavel para ser as chaves possíveis.
-            if(this.achaCHAVE(t.ataqueEscuro(rena, pegasus.clone(), op))){
+            if(this.TestaChave(t.ataqueEscuro(rena, pegasus.clone(), op))){
                 System.out.println("(ATAQUE ESCURO)chave transposicao: " + rena);
                 break;
             }
