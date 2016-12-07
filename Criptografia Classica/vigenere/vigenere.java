@@ -30,8 +30,8 @@ public class vigenere {
         while(a < bispo.length)
             for(int k = 0; k < key.length && a < bispo.length; k++, a++)
                 bispo[a] = (byte)((bispo[a] - key[k])%256);
-        if (op == 1) return new String(bispo, "UTF-8").toLowerCase().split(" ");//OP 2: 75% de acerto, bem mais rápido.
-        else return new String(bispo, "UTF-8").replaceAll("[^a-zA-Z1-9 ]", " ").toLowerCase().split(" ");//OP 1: 90% de acerto, porem mais lento.
+        if (op == 1) return new String(bispo, "UTF-8").toLowerCase().split(" ");//OP 1: 75% de acerto, bem mais rápido.
+        else return new String(bispo, "UTF-8").replaceAll("[^a-zA-Z1-9 ]", " ").toLowerCase().split(" ");//OP 2: 90% de acerto, porem mais lento.
     }
 
     public void ataqueClaro(byte[] martelo){

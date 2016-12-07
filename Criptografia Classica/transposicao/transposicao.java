@@ -43,8 +43,8 @@ public class transposicao{
     public String[] ataqueEscuro(int key, byte[] freira, int op) throws IOException{
         this.linhas = key;// pra descriptografar, é o processo contrario a chave vira as linhas.
         this.colunas = freira.length/this.linhas;
-        if(op == 1) return new String(transposta(criarMatriz(freira)), "UTF-8").toLowerCase().split(" ");//OP 2: 75% de acerto, bem mais rápido.
-        else return new String(transposta(criarMatriz(freira)), "UTF-8").replaceAll("[^a-zA-Z1-9 ]", " ").toLowerCase().split(" ");//OP 1: 90% de acerto, porem mais lento.
+        if(op == 1) return new String(transposta(criarMatriz(freira)), "UTF-8").toLowerCase().split(" ");//OP 1: 75% de acerto, bem mais rápido.
+        else return new String(transposta(criarMatriz(freira)), "UTF-8").replaceAll("[^a-zA-Z1-9 ]", " ").toLowerCase().split(" ");//OP 2: 90% de acerto, porem mais lento.
     }
     public void ataqueClaro(){
         System.out.println("(ATAQUE CLARO) chave transposicao: " + criarMatriz(this.nilo).length);
