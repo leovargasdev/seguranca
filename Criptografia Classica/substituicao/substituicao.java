@@ -18,7 +18,7 @@ public class substituicao{
     public void descriptografar() throws IOException{
         FileOutputStream w = new FileOutputStream(new File("substituicao/outputs/out_descrip.txt"));
         for(int u = 0; u < jurema.length; u++){
-            this.jurema[u] = (byte)this.ascii[Math.abs((int)this.jurema[u])];
+            //this.jurema[u] = (byte)this.ascii[Math.abs((int)this.jurema[u])];
         }
         w.write(this.jurema);
         w.close();
